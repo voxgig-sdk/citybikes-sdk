@@ -1,0 +1,375 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "CityBikes API",
+    "description": "API for accessing CityBikes data including network information, station details, and field filtering. This is a free service providing real-time information about bike sharing networks worldwide.",
+    "version": "2.0.0",
+    "contact": {
+      "email": "info@citybik.es"
+    },
+    "termsOfService": "https://api.citybik.es/v2/",
+    "license": {
+      "name": "Terms of Service",
+      "url": "https://api.citybik.es/v2/"
+    }
+  },
+  "servers": [
+    {
+      "url": "http://api.citybik.es/v2",
+      "description": "CityBikes API v2"
+    }
+  ],
+  "paths": {
+    "/networks": {
+      "get": {
+        "summary": "Get all bike sharing networks",
+        "description": "Returns a list of all bike sharing networks available in the CityBikes database. Supports field filtering to retrieve only specific fields.",
+        "operationId": "getNetworks",
+        "tags": [
+          "Networks"
+        ],
+        "parameters": [
+          {
+            "name": "fields",
+            "in": "query",
+            "description": "Comma-separated list of fields to include in the response (e.g., id,name,href)",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "id,name,href"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with list of networks",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "networks": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Network"
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "full": {
+                    "summary": "Full network information",
+                    "value": {
+                      "networks": [
+                        {
+                          "company": "JCDecaux",
+                          "href": "/v2/networks/velib",
+                          "location": {
+                            "latitude": 48.856612,
+                            "city": "Paris",
+                            "longitude": 2.352233,
+                            "country": "FRA"
+                          },
+                          "name": "Vélib'",
+                          "id": "velib"
+                        }
+                      ]
+                    }
+                  },
+                  "filtered": {
+                    "summary": "Filtered fields (id, name, href)",
+                    "value": {
+                      "networks": [
+                        {
+                          "href": "/v2/networks/velib",
+                          "id": "velib",
+                          "name": "Vélib'"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/networks/{network_id}": {
+      "get": {
+        "summary": "Get specific network details",
+        "description": "Returns detailed information about a specific bike sharing network, including all stations. Use the ?fields=stations parameter to filter and retrieve only station data.",
+        "operationId": "getNetworkById",
+        "tags": [
+          "Networks"
+        ],
+        "parameters": [
+          {
+            "name": "network_id",
+            "in": "path",
+            "description": "Unique identifier of the network",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "divvy"
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "description": "Comma-separated list of fields to include in the response. Use 'stations' to get only station data.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "stations"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with network details",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "network": {
+                      "$ref": "#/components/schemas/NetworkDetail"
+                    }
+                  }
+                },
+                "examples": {
+                  "full": {
+                    "summary": "Full network details with stations",
+                    "value": {
+                      "network": {
+                        "id": "divvy",
+                        "name": "Divvy",
+                        "location": {
+                          "latitude": 41.8781136,
+                          "longitude": -87.6297982,
+                          "city": "Chicago, IL",
+                          "country": "US"
+                        },
+                        "href": "/v2/networks/divvy",
+                        "company": [
+                          "Motivate International, Inc.",
+                          "PBSC Urban Solutions"
+                        ],
+                        "stations": [
+                          {
+                            "id": "000db9b6e3849926d4868caf7096780d",
+                            "name": "Calumet Ave & 21st St",
+                            "latitude": 41.85418424947,
+                            "longitude": -87.6191537415,
+                            "timestamp": "2025-04-17T16:41:02.505032+00:00",
+                            "free_bikes": 13,
+                            "empty_slots": 1,
+                            "extra": {
+                              "uid": "95a7c0eccf0eff27a6e9c603d93e0bdc",
+                              "online": true
+                            },
+                            "kind": "ebike"
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Network not found"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Network": {
+        "type": "object",
+        "description": "Basic network information",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique identifier for the network",
+            "example": "velib"
+          },
+          "name": {
+            "type": "string",
+            "description": "Display name of the network",
+            "example": "Vélib'"
+          },
+          "href": {
+            "type": "string",
+            "description": "API endpoint for detailed network information",
+            "example": "/v2/networks/velib"
+          },
+          "company": {
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            ],
+            "description": "Company or companies operating the network",
+            "example": "JCDecaux"
+          },
+          "location": {
+            "$ref": "#/components/schemas/Location"
+          }
+        }
+      },
+      "NetworkDetail": {
+        "type": "object",
+        "description": "Detailed network information including stations",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique identifier for the network",
+            "example": "divvy"
+          },
+          "name": {
+            "type": "string",
+            "description": "Display name of the network",
+            "example": "Divvy"
+          },
+          "href": {
+            "type": "string",
+            "description": "API endpoint for this network",
+            "example": "/v2/networks/divvy"
+          },
+          "company": {
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            ],
+            "description": "Company or companies operating the network"
+          },
+          "location": {
+            "$ref": "#/components/schemas/Location"
+          },
+          "stations": {
+            "type": "array",
+            "description": "List of all stations in this network",
+            "items": {
+              "$ref": "#/components/schemas/Station"
+            }
+          }
+        }
+      },
+      "Location": {
+        "type": "object",
+        "description": "Geographic location information",
+        "properties": {
+          "latitude": {
+            "type": "number",
+            "format": "double",
+            "description": "Latitude coordinate",
+            "example": 48.856612
+          },
+          "longitude": {
+            "type": "number",
+            "format": "double",
+            "description": "Longitude coordinate",
+            "example": 2.352233
+          },
+          "city": {
+            "type": "string",
+            "description": "City name",
+            "example": "Paris"
+          },
+          "country": {
+            "type": "string",
+            "description": "Country code (ISO 3166-1 alpha-3 or alpha-2)",
+            "example": "FRA"
+          }
+        }
+      },
+      "Station": {
+        "type": "object",
+        "description": "Individual bike station information",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique identifier for the station",
+            "example": "000db9b6e3849926d4868caf7096780d"
+          },
+          "name": {
+            "type": "string",
+            "description": "Station name or address",
+            "example": "Calumet Ave & 21st St"
+          },
+          "latitude": {
+            "type": "number",
+            "format": "double",
+            "description": "Station latitude coordinate",
+            "example": 41.85418424947
+          },
+          "longitude": {
+            "type": "number",
+            "format": "double",
+            "description": "Station longitude coordinate",
+            "example": -87.6191537415
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "description": "UTC timestamp of last update",
+            "example": "2025-04-17T16:41:02.505032+00:00"
+          },
+          "free_bikes": {
+            "type": "integer",
+            "description": "Number of available bikes",
+            "example": 13
+          },
+          "empty_slots": {
+            "type": "integer",
+            "description": "Number of empty docking slots",
+            "example": 1
+          },
+          "extra": {
+            "type": "object",
+            "description": "Additional station-specific information",
+            "properties": {
+              "uid": {
+                "type": "string",
+                "description": "Alternative unique identifier"
+              },
+              "online": {
+                "type": "boolean",
+                "description": "Whether the station is online"
+              }
+            },
+            "additionalProperties": true
+          },
+          "kind": {
+            "type": "string",
+            "description": "Type of bikes available",
+            "example": "ebike"
+          }
+        }
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Networks",
+      "description": "Operations related to bike sharing networks and their stations"
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+# Guide
+
+guide: {
+  metrics: count: entity: 1
+  metrics: count: path: 2
+  metrics: count: method: 2
+
+  entity: network: {
+    path: "/networks": {
+      op: list: method: *GET
+    }
+    path: "/networks/{network_id}": {
+      rename: param: "network_id": *"id"
+      op: load: method: *GET
+      op: load: transform: res: *("`body.network`")|top
+    }
+  }
+
+}

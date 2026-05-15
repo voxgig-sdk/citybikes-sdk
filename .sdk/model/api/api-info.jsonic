@@ -1,0 +1,28 @@
+# API Information
+
+
+main: {
+  kit: {
+    info: {
+      contact: {
+        email: "info@citybik.es"
+      }
+      description: "API for accessing CityBikes data including network information, station details, and field filtering. This is a free service providing real-time information about bike sharing networks worldwide."
+      license: {
+        name: "Terms of Service"
+        url: "https://api.citybik.es/v2/"
+      }
+      servers: [
+        {
+          description: "CityBikes API v2"
+          url: "http://api.citybik.es/v2"
+        }
+      ]
+      termsOfService: "https://api.citybik.es/v2/"
+      title: "CityBikes API"
+      version: "2.0.0"
+    }
+  }
+}
+
+}

@@ -1,0 +1,41 @@
+{
+  "existing": {
+    "network": {
+      "NETWORK00": {
+        "company": "s3c",
+        "href": "s3d",
+        "id": "NETWORK00",
+        "location": {},
+        "name": "s40",
+        "network": {}
+      },
+      "NETWORK01": {
+        "company": "s78",
+        "href": "s79",
+        "id": "NETWORK01",
+        "location": {},
+        "name": "s7c",
+        "network": {}
+      },
+      "NETWORK02": {
+        "company": "sb4",
+        "href": "sb5",
+        "id": "NETWORK02",
+        "location": {},
+        "name": "sb8",
+        "network": {}
+      }
+    }
+  },
+  "new": {
+    "network": {
+      "network_ref01": {
+        "company": "sf0",
+        "href": "sf1",
+        "location": {},
+        "name": "sf4",
+        "network": {}
+      }
+    }
+  }
+}
