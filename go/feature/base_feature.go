@@ -1,7 +1,7 @@
 package feature
 
 import (
-	"github.com/voxgig-sdk/citybikes-sdk/core"
+	"github.com/voxgig-sdk/citybikes-sdk/go/core"
 )
 
 type BaseFeature struct {

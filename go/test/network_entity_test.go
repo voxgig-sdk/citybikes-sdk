@@ -9,10 +9,10 @@ import (
 	"testing"
 	"time"
 
-	sdk "github.com/voxgig-sdk/citybikes-sdk"
-	"github.com/voxgig-sdk/citybikes-sdk/core"
+	sdk "github.com/voxgig-sdk/citybikes-sdk/go"
+	"github.com/voxgig-sdk/citybikes-sdk/go/core"
 
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/citybikes-sdk/go/utility/struct"
 )
 
 func TestNetworkEntity(t *testing.T) {

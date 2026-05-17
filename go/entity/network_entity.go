@@ -1,9 +1,9 @@
 package entity
 
 import (
-	"github.com/voxgig-sdk/citybikes-sdk/core"
+	"github.com/voxgig-sdk/citybikes-sdk/go/core"
 
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/citybikes-sdk/go/utility/struct"
 )
 
 type NetworkEntity struct {

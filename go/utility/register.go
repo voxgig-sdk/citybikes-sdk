@@ -1,6 +1,6 @@
 package utility
 
-import "github.com/voxgig-sdk/citybikes-sdk/core"
+import "github.com/voxgig-sdk/citybikes-sdk/go/core"
 
 func init() {
 	core.UtilityRegistrar = registerAll

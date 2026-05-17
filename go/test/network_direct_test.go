@@ -6,8 +6,8 @@ import (
 	"strings"
 	"testing"
 
-	sdk "github.com/voxgig-sdk/citybikes-sdk"
-	"github.com/voxgig-sdk/citybikes-sdk/core"
+	sdk "github.com/voxgig-sdk/citybikes-sdk/go"
+	"github.com/voxgig-sdk/citybikes-sdk/go/core"
 )
 
 func TestNetworkDirect(t *testing.T) {
