@@ -121,14 +121,12 @@ function network_direct_setup($mockres)
     $env = Runner::env_override([
         "CITYBIKES_TEST_NETWORK_ENTID" => [],
         "CITYBIKES_TEST_LIVE" => "FALSE",
-        "CITYBIKES_APIKEY" => "NONE",
     ]);
 
     $live = $env["CITYBIKES_TEST_LIVE"] === "TRUE";
 
     if ($live) {
         $merged_opts = [
-            "apikey" => $env["CITYBIKES_APIKEY"],
         ];
         $client = new CitybikesSDK($merged_opts);
         return [

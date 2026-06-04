@@ -117,14 +117,12 @@ function directSetup(mockres?: any) {
   const env = envOverride({
     'CITYBIKES_TEST_NETWORK_ENTID': {},
     'CITYBIKES_TEST_LIVE': 'FALSE',
-    'CITYBIKES_APIKEY': 'NONE',
   })
 
   const live = 'TRUE' === env.CITYBIKES_TEST_LIVE
 
   if (live) {
     const client = new CitybikesSDK({
-      apikey: env.CITYBIKES_APIKEY,
     })
 
     let idmap: any = env['CITYBIKES_TEST_NETWORK_ENTID']
