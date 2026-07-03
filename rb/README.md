@@ -10,13 +10,13 @@ The Ruby SDK for the Citybikes API — an entity-oriented client using idiomatic
 
 ## Install
 ```bash
-gem install citybikes-sdk
+gem install voxgig-sdk-citybikes
 ```
 
 Or add to your `Gemfile`:
 
 ```ruby
-gem "citybikes-sdk"
+gem "voxgig-sdk-citybikes"
 ```
 
 Then run:

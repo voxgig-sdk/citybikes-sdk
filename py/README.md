@@ -10,7 +10,7 @@ The Python SDK for the Citybikes API — an entity-oriented client following Pyt
 
 ## Install
 ```bash
-pip install citybikes-sdk
+pip install voxgig-sdk-citybikes
 ```
 
 Or install from source:

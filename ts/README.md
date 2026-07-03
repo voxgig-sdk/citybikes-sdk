@@ -10,7 +10,7 @@ The TypeScript SDK for the Citybikes API — a type-safe, entity-oriented client
 
 ## Install
 ```bash
-npm install citybikes
+npm install @voxgig-sdk/citybikes
 ```
 ## Tutorial: your first API call
 
