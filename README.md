@@ -1,21 +1,8 @@
 # Citybikes SDK
 
-Discover bike-sharing networks and real-time station availability for cities worldwide
+CityBikes API client, generated from the OpenAPI spec.
 
 > TypeScript, Python, PHP, Golang, Ruby, Lua SDKs, a CLI, an interactive REPL, and an MCP server for AI agents — all generated from one OpenAPI spec by [@voxgig/sdkgen](https://github.com/voxgig/sdkgen).
-
-## About CityBikes API
-
-[CityBikes](http://api.citybik.es/v2/) is a long-running community project that aggregates real-time data from bike-sharing networks around the world into a single JSON API. The project is powered by the open-source [PyBikes](https://github.com/eskerda/pybikes) scraper library.
-
-What you get from the API:
-
-- A list of every tracked bike-sharing network with its `id`, `name`, `company`, and location (`latitude`, `longitude`, `city`, `country`).
-- Per-network detail including a `stations` array with each station's coordinates, last-update `timestamp`, and live `free_bikes` / `empty_slots` counts.
-- A `vehicles` array for free-floating systems, with location and a type classifier of `bike`, `ebike`, or `scooter`.
-- Extra metadata where the operator provides it: payment methods, e-bike availability, rental URIs, and online status.
-
-Responses are JSON only. You can trim payloads with the `?fields=id,name,href` query parameter, which selects fields from the top-level document. CORS is enabled, and no authentication is required.
 
 ## Try it
 
@@ -49,29 +36,31 @@ gem install citybikes-sdk
 luarocks install citybikes-sdk
 ```
 
-## 30-second quickstart
+## Quickstart
 
 ### TypeScript
 
 ```ts
 import { CitybikesSDK } from 'citybikes'
 
-const client = new CitybikesSDK({})
+const client = new CitybikesSDK({
+  apikey: process.env.CITYBIKES_APIKEY,
+})
 
 // List all networks
 const networks = await client.Network().list()
+console.log(networks.data)
 ```
 
-See the [TypeScript README](ts/README.md) for the
-full guide, or scroll down for the same example in other languages.
+See the [TypeScript README](ts/README.md) for the full guide.
 
-## What's in the box
+## Surfaces
 
-| Surface | Use it for | Path |
-| --- | --- | --- |
-| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | App integration | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
-| **CLI** | Scripts, CI, ops, one-off API calls | `go-cli/` |
-| **MCP server** | AI agents (Claude, Cursor, Cline) | `go-mcp/` |
+| Surface | Path |
+| --- | --- |
+| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
+| **CLI** | `go-cli/` |
+| **MCP server** | `go-mcp/` |
 
 ## Use it from an AI agent (MCP)
 
@@ -101,7 +90,7 @@ The API exposes one entity:
 
 | Entity | Description | API path |
 | --- | --- | --- |
-| **Network** | A bike-sharing system in a given city, exposed at `/v2/networks` (list) and `/v2/networks/{network_id}` (detail with stations and free-floating vehicles). | `/networks` |
+| **Network** |  | `/networks` |
 
 Each entity supports the following operations where available: **load**,
 **list**, **create**, **update**, and **remove**.
@@ -111,17 +100,20 @@ Each entity supports the following operations where available: **load**,
 ### Python
 
 ```python
+import os
 from citybikes_sdk import CitybikesSDK
 
-client = CitybikesSDK({})
+client = CitybikesSDK({
+    "apikey": os.environ.get("CITYBIKES_APIKEY"),
+})
 
 # List all networks
-networks, err = client.Network(None).list(None, None)
+networks, err = client.Network().list()
+print(networks)
 
 # Load a specific network
-network, err = client.Network(None).load(
-    {"id": "example_id"}, None
-)
+network, err = client.Network().load({"id": "example_id"})
+print(network)
 ```
 
 ### PHP
@@ -130,15 +122,17 @@ network, err = client.Network(None).load(
 <?php
 require_once 'citybikes_sdk.php';
 
-$client = new CitybikesSDK([]);
+$client = new CitybikesSDK([
+    "apikey" => getenv("CITYBIKES_APIKEY"),
+]);
 
 // List all networks
-[$networks, $err] = $client->Network(null)->list(null, null);
+[$networks, $err] = $client->Network()->list();
+print_r($networks);
 
 // Load a specific network
-[$network, $err] = $client->Network(null)->load(
-    ["id" => "example_id"], null
-);
+[$network, $err] = $client->Network()->load(["id" => "example_id"]);
+print_r($network);
 ```
 
 ### Golang
@@ -146,10 +140,13 @@ $client = new CitybikesSDK([]);
 ```go
 import sdk "github.com/voxgig-sdk/citybikes-sdk/go"
 
-client := sdk.NewCitybikesSDK(map[string]any{})
+client := sdk.NewCitybikesSDK(map[string]any{
+    "apikey": os.Getenv("CITYBIKES_APIKEY"),
+})
 
 // List all networks
 networks, err := client.Network(nil).List(nil, nil)
+fmt.Println(networks)
 ```
 
 ### Ruby
@@ -157,15 +154,17 @@ networks, err := client.Network(nil).List(nil, nil)
 ```ruby
 require_relative "Citybikes_sdk"
 
-client = CitybikesSDK.new({})
+client = CitybikesSDK.new({
+  "apikey" => ENV["CITYBIKES_APIKEY"],
+})
 
 # List all networks
-networks, err = client.Network(nil).list(nil, nil)
+networks, err = client.Network().list
+puts networks
 
 # Load a specific network
-network, err = client.Network(nil).load(
-  { "id" => "example_id" }, nil
-)
+network, err = client.Network().load({ "id" => "example_id" })
+puts network
 ```
 
 ### Lua
@@ -173,15 +172,17 @@ network, err = client.Network(nil).load(
 ```lua
 local sdk = require("citybikes_sdk")
 
-local client = sdk.new({})
+local client = sdk.new({
+  apikey = os.getenv("CITYBIKES_APIKEY"),
+})
 
 -- List all networks
-local networks, err = client:Network(nil):list(nil, nil)
+local networks, err = client:Network():list()
+print(networks)
 
 -- Load a specific network
-local network, err = client:Network(nil):load(
-  { id = "example_id" }, nil
-)
+local network, err = client:Network():load({ id = "example_id" })
+print(network)
 ```
 
 ## Unit testing in offline mode
@@ -200,25 +201,21 @@ const result = await client.Network().load({ id: 'test01' })
 ### Python
 
 ```python
-client = CitybikesSDK.test(None, None)
-result, err = client.Network(None).load(
-    {"id": "test01"}, None
-)
+client = CitybikesSDK.test()
+result, err = client.Network().load({"id": "test01"})
 ```
 
 ### PHP
 
 ```php
-$client = CitybikesSDK::test(null, null);
-[$result, $err] = $client->Network(null)->load(
-    ["id" => "test01"], null
-);
+$client = CitybikesSDK::test();
+[$result, $err] = $client->Network()->load(["id" => "test01"]);
 ```
 
 ### Golang
 
 ```go
-client := sdk.TestSDK(nil, nil)
+client := sdk.Test()
 result, err := client.Network(nil).Load(
     map[string]any{"id": "test01"}, nil,
 )
@@ -227,19 +224,15 @@ result, err := client.Network(nil).Load(
 ### Ruby
 
 ```ruby
-client = CitybikesSDK.test(nil, nil)
-result, err = client.Network(nil).load(
-  { "id" => "test01" }, nil
-)
+client = CitybikesSDK.test
+result, err = client.Network().load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
-local client = sdk.test(nil, nil)
-local result, err = client:Network(nil):load(
-  { id = "test01" }, nil
-)
+local client = sdk.test()
+local result, err = client:Network():load({ id = "test01" })
 ```
 
 ## How it works
@@ -343,15 +336,6 @@ local result, err = client:direct({
 - [Golang](go/README.md)
 - [Ruby](rb/README.md)
 - [Lua](lua/README.md)
-
-## Using the CityBikes API
-
-- Upstream: [http://api.citybik.es/v2/](http://api.citybik.es/v2/)
-
-- Free to access without an API key.
-- Attribution is required: include a noticeable statement on your app or website linking back to the CityBikes project.
-- Projects built on PyBikes should additionally credit that library.
-- The maintainers describe the data as "not exactly open data" — attribution is what keeps the service sustainable.
 
 ---
 

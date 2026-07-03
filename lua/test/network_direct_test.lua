@@ -115,12 +115,14 @@ function network_direct_setup(mockres)
   local env = runner.env_override({
     ["CITYBIKES_TEST_NETWORK_ENTID"] = {},
     ["CITYBIKES_TEST_LIVE"] = "FALSE",
+    ["CITYBIKES_APIKEY"] = "NONE",
   })
 
   local live = env["CITYBIKES_TEST_LIVE"] == "TRUE"
 
   if live then
     local merged_opts = {
+      apikey = env["CITYBIKES_APIKEY"],
     }
     local client = sdk.new(merged_opts)
     return {

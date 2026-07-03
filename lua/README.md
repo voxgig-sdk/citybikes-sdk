@@ -1,6 +1,11 @@
 # Citybikes Lua SDK
 
-The Lua SDK for the Citybikes API. Provides an entity-oriented interface using Lua conventions.
+
+
+The Lua SDK for the Citybikes API — an entity-oriented client using Lua conventions.
+
+> Other languages, the CLI, and MCP server live alongside this one — see
+> the [top-level README](../README.md).
 
 
 ## Install
@@ -26,13 +31,15 @@ loading a specific record.
 ```lua
 local sdk = require("citybikes_sdk")
 
-local client = sdk.new({})
+local client = sdk.new({
+  apikey = os.getenv("CITYBIKES_APIKEY"),
+})
 ```
 
 ### 2. List networks
 
 ```lua
-local result, err = client:Network(nil):list(nil, nil)
+local result, err = client:Network():list()
 if err then error(err) end
 
 if type(result) == "table" then
@@ -46,7 +53,7 @@ end
 ### 3. Load a network
 
 ```lua
-local result, err = client:Network(nil):load({ id = "example_id" }, nil)
+local result, err = client:Network():load({ id = "example_id" })
 if err then error(err) end
 print(result)
 ```
@@ -92,11 +99,9 @@ print(fetchdef["headers"])
 Create a mock client for unit testing — no server required:
 
 ```lua
-local client = sdk.test(nil, nil)
+local client = sdk.test()
 
-local result, err = client:Citybikes(nil):load(
-  { id = "test01" }, nil
-)
+local result, err = client:Citybikes():load({ id = "test01" })
 -- result contains mock response data
 ```
 
@@ -130,6 +135,7 @@ Create a `.env.local` file at the project root:
 
 ```
 CITYBIKES_TEST_LIVE=TRUE
+CITYBIKES_APIKEY=<your-key>
 ```
 
 Then run:
@@ -152,6 +158,7 @@ Creates a new SDK client.
 
 | Option | Type | Description |
 | --- | --- | --- |
+| `apikey` | `string` | API key for authentication. |
 | `base` | `string` | Base URL of the API server. |
 | `prefix` | `string` | URL path prefix prepended to all requests. |
 | `suffix` | `string` | URL path suffix appended to all requests. |

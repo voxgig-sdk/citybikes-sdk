@@ -122,7 +122,7 @@ main: kit: entity: network: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.network`"
           }
         }
       ]

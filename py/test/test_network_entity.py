@@ -102,6 +102,7 @@ def _network_basic_setup(extra):
         "CITYBIKES_TEST_NETWORK_ENTID": idmap,
         "CITYBIKES_TEST_LIVE": "FALSE",
         "CITYBIKES_TEST_EXPLAIN": "FALSE",
+        "CITYBIKES_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -112,6 +113,7 @@ def _network_basic_setup(extra):
     if env.get("CITYBIKES_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
+                "apikey": env.get("CITYBIKES_APIKEY"),
             },
             extra or {},
         ])

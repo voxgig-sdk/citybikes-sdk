@@ -21,28 +21,7 @@ main: {
       termsOfService: "https://api.citybik.es/v2/"
       title: "CityBikes API"
       version: "2.0.0"
-      tagline: "Discover bike-sharing networks and real-time station availability for cities worldwide"
-      homepage: "http://api.citybik.es/v2/"
-      docs_url: "http://api.citybik.es/v2/"
-      license_short: "Free to use with required attribution; not strictly open data"
-      license_md: `- Free to access without an API key.
-- Attribution is required: include a noticeable statement on your app or website linking back to the CityBikes project.
-- Projects built on PyBikes should additionally credit that library.
-- The maintainers describe the data as "not exactly open data" — attribution is what keeps the service sustainable.`
-      about_md: `[CityBikes](http://api.citybik.es/v2/) is a long-running community project that aggregates real-time data from bike-sharing networks around the world into a single JSON API. The project is powered by the open-source [PyBikes](https://github.com/eskerda/pybikes) scraper library.
-
-What you get from the API:
-
-- A list of every tracked bike-sharing network with its \`id\`, \`name\`, \`company\`, and location (\`latitude\`, \`longitude\`, \`city\`, \`country\`).
-- Per-network detail including a \`stations\` array with each station's coordinates, last-update \`timestamp\`, and live \`free_bikes\` / \`empty_slots\` counts.
-- A \`vehicles\` array for free-floating systems, with location and a type classifier of \`bike\`, \`ebike\`, or \`scooter\`.
-- Extra metadata where the operator provides it: payment methods, e-bike availability, rental URIs, and online status.
-
-Responses are JSON only. You can trim payloads with the \`?fields=id,name,href\` query parameter, which selects fields from the top-level document. CORS is enabled, and no authentication is required.`
-      entity_desc: {
-        network: "A bike-sharing system in a given city, exposed at `/v2/networks` (list) and `/v2/networks/{network_id}` (detail with stations and free-floating vehicles)."
-      }
-      auth: false
     }
   }
 }
+

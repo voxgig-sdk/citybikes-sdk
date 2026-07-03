@@ -96,6 +96,7 @@ function network_basic_setup($extra)
         "CITYBIKES_TEST_NETWORK_ENTID" => $idmap,
         "CITYBIKES_TEST_LIVE" => "FALSE",
         "CITYBIKES_TEST_EXPLAIN" => "FALSE",
+        "CITYBIKES_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -107,6 +108,7 @@ function network_basic_setup($extra)
     if ($env["CITYBIKES_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
+                "apikey" => $env["CITYBIKES_APIKEY"],
             ],
             $extra ?? [],
         ]);

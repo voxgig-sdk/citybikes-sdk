@@ -120,6 +120,7 @@ function basicSetup(extra?: any) {
     'CITYBIKES_TEST_NETWORK_ENTID': idmap,
     'CITYBIKES_TEST_LIVE': 'FALSE',
     'CITYBIKES_TEST_EXPLAIN': 'FALSE',
+    'CITYBIKES_APIKEY': 'NONE',
   })
 
   idmap = env['CITYBIKES_TEST_NETWORK_ENTID']
@@ -129,6 +130,7 @@ function basicSetup(extra?: any) {
   if (live) {
     client = new CitybikesSDK(merge([
       {
+        apikey: env.CITYBIKES_APIKEY,
       },
       extra
     ]))

@@ -1,6 +1,11 @@
 # Citybikes PHP SDK
 
-The PHP SDK for the Citybikes API. Provides an entity-oriented interface using PHP conventions.
+
+
+The PHP SDK for the Citybikes API — an entity-oriented client using PHP conventions.
+
+> Other languages, the CLI, and MCP server live alongside this one — see
+> the [top-level README](../README.md).
 
 
 ## Install
@@ -20,13 +25,15 @@ loading a specific record.
 <?php
 require_once 'citybikes_sdk.php';
 
-$client = new CitybikesSDK([]);
+$client = new CitybikesSDK([
+    "apikey" => getenv("CITYBIKES_APIKEY"),
+]);
 ```
 
 ### 2. List networks
 
 ```php
-[$result, $err] = $client->Network(null)->list(null, null);
+[$result, $err] = $client->Network()->list();
 if ($err) { throw new \Exception($err); }
 
 if (is_array($result)) {
@@ -40,7 +47,7 @@ if (is_array($result)) {
 ### 3. Load a network
 
 ```php
-[$result, $err] = $client->Network(null)->load(["id" => "example_id"], null);
+[$result, $err] = $client->Network()->load(["id" => "example_id"]);
 if ($err) { throw new \Exception($err); }
 print_r($result);
 ```
@@ -86,11 +93,9 @@ print_r($fetchdef["headers"]);
 Create a mock client for unit testing — no server required:
 
 ```php
-$client = CitybikesSDK::test(null, null);
+$client = CitybikesSDK::test();
 
-[$result, $err] = $client->Citybikes(null)->load(
-    ["id" => "test01"], null
-);
+[$result, $err] = $client->Citybikes()->load(["id" => "test01"]);
 // $result contains mock response data
 ```
 
@@ -125,6 +130,7 @@ Create a `.env.local` file at the project root:
 
 ```
 CITYBIKES_TEST_LIVE=TRUE
+CITYBIKES_APIKEY=<your-key>
 ```
 
 Then run:
@@ -147,6 +153,7 @@ Creates a new SDK client.
 
 | Option | Type | Description |
 | --- | --- | --- |
+| `apikey` | `string` | API key for authentication. |
 | `base` | `string` | Base URL of the API server. |
 | `prefix` | `string` | URL path prefix prepended to all requests. |
 | `suffix` | `string` | URL path suffix appended to all requests. |
