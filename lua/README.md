@@ -9,12 +9,9 @@ The Lua SDK for the Citybikes API — an entity-oriented client using Lua conven
 
 
 ## Install
-```bash
-luarocks install voxgig-sdk-citybikes
-```
-
-If the module is not yet published, add the source directory to
-your `LUA_PATH`:
+This package is not yet published to LuaRocks. Install it from the
+GitHub release tag (`lua/vX.Y.Z`, see [Releases](https://github.com/voxgig-sdk/citybikes-sdk/releases)),
+or add the source directory to your `LUA_PATH`:
 
 ```bash
 export LUA_PATH="path/to/lua/?.lua;path/to/lua/?/init.lua;;"
@@ -31,15 +28,13 @@ loading a specific record.
 ```lua
 local sdk = require("citybikes_sdk")
 
-local client = sdk.new({
-  apikey = os.getenv("CITYBIKES_APIKEY"),
-})
+local client = sdk.new()
 ```
 
 ### 2. List networks
 
 ```lua
-local result, err = client:Network():list()
+local result, err = client:network():list()
 if err then error(err) end
 
 if type(result) == "table" then
@@ -53,7 +48,7 @@ end
 ### 3. Load a network
 
 ```lua
-local result, err = client:Network():load({ id = "example_id" })
+local result, err = client:network():load({ id = "example_id" })
 if err then error(err) end
 print(result)
 ```
@@ -101,7 +96,7 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:Citybikes():load({ id = "test01" })
+local result, err = client:network():load({ id = "test01" })
 -- result contains mock response data
 ```
 
@@ -135,7 +130,6 @@ Create a `.env.local` file at the project root:
 
 ```
 CITYBIKES_TEST_LIVE=TRUE
-CITYBIKES_APIKEY=<your-key>
 ```
 
 Then run:
@@ -158,7 +152,6 @@ Creates a new SDK client.
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `string` | API key for authentication. |
 | `base` | `string` | Base URL of the API server. |
 | `prefix` | `string` | URL path prefix prepended to all requests. |
 | `suffix` | `string` | URL path suffix appended to all requests. |
@@ -240,7 +233,7 @@ API path: `/networks`
 
 ### Network
 
-Create an instance: `const network = client.Network()`
+Create an instance: `const network = client.network`
 
 #### Operations
 
@@ -263,13 +256,13 @@ Create an instance: `const network = client.Network()`
 #### Example: Load
 
 ```ts
-const network = await client.Network().load({ id: 'network_id' })
+const network = await client.network.load({ id: 'network_id' })
 ```
 
 #### Example: List
 
 ```ts
-const networks = await client.Network().list()
+const networks = await client.network.list()
 ```
 
 
@@ -344,11 +337,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local moon = client:Moon(nil)
-moon:load({ planet_id = "earth", id = "luna" }, nil)
+local network = client:network()
+network:load({ id = "example_id" })
 
--- moon:data_get() now returns the loaded moon data
--- moon:match_get() returns the last match criteria
+-- network:data_get() now returns the loaded network data
+-- network:match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

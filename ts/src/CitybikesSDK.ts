@@ -2,6 +2,8 @@
 
 import { NetworkEntity } from './entity/NetworkEntity'
 
+export type * from './CitybikesTypes'
+
 
 import { inspect } from 'node:util'
 
@@ -202,6 +204,14 @@ class CitybikesSDK {
 
 
 
+  _network?: NetworkEntity
+
+  // Idiomatic facade: `client.network.list()` / `client.network.load({ id })`.
+  get network(): NetworkEntity {
+    return (this._network ??= new NetworkEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.network` instead. */
   Network(data?: any) {
     const self = this
     return new NetworkEntity(self,data)

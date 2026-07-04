@@ -45,6 +45,7 @@ class NetworkEntity
     end
   end
 
+  # @return [Network, Hash] the current Network data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,12 +58,18 @@ class NetworkEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of Network fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
   end
 
   
+  # Load a single Network.
+  #
+  # @param reqmatch [NetworkLoadMatch, Hash, nil] match criteria (id/query fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Network, Hash] the loaded Network; raises CitybikesError on failure
   def load(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({
@@ -86,6 +93,11 @@ class NetworkEntity
 
 
   
+  # List Network items matching the given filter.
+  #
+  # @param reqmatch [NetworkListMatch, Hash, nil] match filter (any subset of Network fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Array<Network>, Array] the matching Network items; raises CitybikesError on failure
   def list(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

@@ -50,16 +50,14 @@ class TestNetworkEntity:
         network_ref01_ent = client.Network(None)
         network_ref01_match = {}
 
-        network_ref01_list_result, err = network_ref01_ent.list(network_ref01_match, None)
-        assert err is None
+        network_ref01_list_result = network_ref01_ent.list(network_ref01_match, None)
         assert isinstance(network_ref01_list_result, list)
 
         # LOAD
         network_ref01_match_dt0 = {
             "id": network_ref01_data["id"],
         }
-        network_ref01_data_dt0_loaded, err = network_ref01_ent.load(network_ref01_match_dt0, None)
-        assert err is None
+        network_ref01_data_dt0_loaded = network_ref01_ent.load(network_ref01_match_dt0, None)
         network_ref01_data_dt0_load_result = helpers.to_map(network_ref01_data_dt0_loaded)
         assert network_ref01_data_dt0_load_result is not None
         assert network_ref01_data_dt0_load_result["id"] == network_ref01_data["id"]
@@ -102,7 +100,6 @@ def _network_basic_setup(extra):
         "CITYBIKES_TEST_NETWORK_ENTID": idmap,
         "CITYBIKES_TEST_LIVE": "FALSE",
         "CITYBIKES_TEST_EXPLAIN": "FALSE",
-        "CITYBIKES_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -113,7 +110,6 @@ def _network_basic_setup(extra):
     if env.get("CITYBIKES_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("CITYBIKES_APIKEY"),
             },
             extra or {},
         ])

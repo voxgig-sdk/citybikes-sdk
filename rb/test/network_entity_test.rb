@@ -43,16 +43,14 @@ class NetworkEntityTest < Minitest::Test
     network_ref01_ent = client.Network(nil)
     network_ref01_match = {}
 
-    network_ref01_list_result, err = network_ref01_ent.list(network_ref01_match, nil)
-    assert_nil err
+    network_ref01_list_result = network_ref01_ent.list(network_ref01_match, nil)
     assert network_ref01_list_result.is_a?(Array)
 
     # LOAD
     network_ref01_match_dt0 = {
       "id" => network_ref01_data["id"],
     }
-    network_ref01_data_dt0_loaded, err = network_ref01_ent.load(network_ref01_match_dt0, nil)
-    assert_nil err
+    network_ref01_data_dt0_loaded = network_ref01_ent.load(network_ref01_match_dt0, nil)
     network_ref01_data_dt0_load_result = Helpers.to_map(network_ref01_data_dt0_loaded)
     assert !network_ref01_data_dt0_load_result.nil?
     assert_equal network_ref01_data_dt0_load_result["id"], network_ref01_data["id"]
@@ -93,7 +91,6 @@ def network_basic_setup(extra)
     "CITYBIKES_TEST_NETWORK_ENTID" => idmap,
     "CITYBIKES_TEST_LIVE" => "FALSE",
     "CITYBIKES_TEST_EXPLAIN" => "FALSE",
-    "CITYBIKES_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -105,7 +102,6 @@ def network_basic_setup(extra)
   if env["CITYBIKES_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["CITYBIKES_APIKEY"],
       },
       extra || {},
     ])

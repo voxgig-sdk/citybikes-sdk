@@ -175,14 +175,12 @@ func networkDirectSetup(mockres any) *networkDirectSetupResult {
 	env := envOverride(map[string]any{
 		"CITYBIKES_TEST_NETWORK_ENTID": map[string]any{},
 		"CITYBIKES_TEST_LIVE":    "FALSE",
-		"CITYBIKES_APIKEY":       "NONE",
 	})
 
 	live := env["CITYBIKES_TEST_LIVE"] == "TRUE"
 
 	if live {
 		mergedOpts := map[string]any{
-			"apikey": env["CITYBIKES_APIKEY"],
 		}
 		client := sdk.NewCitybikesSDK(mergedOpts)
 

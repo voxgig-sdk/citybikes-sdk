@@ -102,7 +102,6 @@ function network_basic_setup(extra)
     ["CITYBIKES_TEST_NETWORK_ENTID"] = idmap,
     ["CITYBIKES_TEST_LIVE"] = "FALSE",
     ["CITYBIKES_TEST_EXPLAIN"] = "FALSE",
-    ["CITYBIKES_APIKEY"] = "NONE",
   })
 
   local idmap_resolved = helpers.to_map(
@@ -114,7 +113,6 @@ function network_basic_setup(extra)
   if env["CITYBIKES_TEST_LIVE"] == "TRUE" then
     local merged_opts = vs.merge({
       {
-        apikey = env["CITYBIKES_APIKEY"],
       },
       extra or {},
     })

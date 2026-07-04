@@ -135,7 +135,6 @@ func networkBasicSetup(extra map[string]any) *entityTestSetup {
 		"CITYBIKES_TEST_NETWORK_ENTID": idmap,
 		"CITYBIKES_TEST_LIVE":      "FALSE",
 		"CITYBIKES_TEST_EXPLAIN":   "FALSE",
-		"CITYBIKES_APIKEY":         "NONE",
 	})
 
 	idmapResolved := core.ToMapAny(env["CITYBIKES_TEST_NETWORK_ENTID"])
@@ -146,7 +145,6 @@ func networkBasicSetup(extra map[string]any) *entityTestSetup {
 	if env["CITYBIKES_TEST_LIVE"] == "TRUE" {
 		mergedOpts := vs.Merge([]any{
 			map[string]any{
-				"apikey": env["CITYBIKES_APIKEY"],
 			},
 			extra,
 		})

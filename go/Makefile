@@ -18,6 +18,10 @@ clean:
 #   aql vault exec --for=github=<alias> -- make publish
 # aql `--dry-run` injects a filler token we detect to rehearse (no tag/push).
 # set -e + tag-last: a failed push never leaves a tag behind.
+#
+# NOTE: publishing the git tag is deliberately NOT gated on `go test` (every
+# other target's deploy just pushes its tag; a generated-test quirk must not
+# block the module tag). Run `make test` separately in CI to gate quality.
 VERSION := $(shell cat VERSION)
 TAG := go/v$(VERSION)
 AQL_DRY_RUN_FILLER := AQL-DRY-RUN-FILLER-NOT-A-REAL-SECRET

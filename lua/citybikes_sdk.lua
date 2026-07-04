@@ -244,6 +244,19 @@ end
 
 
 
+-- Idiomatic facade: client:network():list() / client:network():load({ id = ... })
+function CitybikesSDK:network(data)
+  local EntityMod = require("entity.network_entity")
+  if data == nil then
+    if self._network == nil then
+      self._network = EntityMod.new(self, nil)
+    end
+    return self._network
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:network() instead.
 function CitybikesSDK:Network(data)
   local EntityMod = require("entity.network_entity")
   return EntityMod.new(self, data)

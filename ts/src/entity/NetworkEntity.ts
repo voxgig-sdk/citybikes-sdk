@@ -14,9 +14,14 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  Network,
+  NetworkLoadMatch,
+  NetworkListMatch,
+} from '../CitybikesTypes'
 
 // TODO: needs Entity superclass
-class NetworkEntity extends CitybikesEntityBase {
+class NetworkEntity extends CitybikesEntityBase<Network> {
 
   constructor(client: CitybikesSDK, entopts: any) {
     super(client, entopts)
@@ -32,7 +37,7 @@ class NetworkEntity extends CitybikesEntityBase {
 
 
 
-  async load(this: any, reqmatch?: any, ctrl?: Control) {
+  async load(this: any, reqmatch?: NetworkLoadMatch, ctrl?: Control): Promise<Network> {
 
     const utility = this._utility
 
@@ -136,14 +141,16 @@ class NetworkEntity extends CitybikesEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<Network> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }
 
 
 
-  async list(this: any, reqmatch?: any, ctrl?: Control) {
+  async list(this: any, reqmatch?: NetworkListMatch, ctrl?: Control): Promise<Network[]> {
 
     const utility = this._utility
 
@@ -243,7 +250,9 @@ class NetworkEntity extends CitybikesEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<Network[]> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

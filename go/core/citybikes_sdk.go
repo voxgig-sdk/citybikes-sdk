@@ -245,6 +245,9 @@ func (sdk *CitybikesSDK) Direct(fetchargs map[string]any) (map[string]any, error
 }
 
 
+// Network returns a Network entity bound to this client.
+// Idiomatic usage: client.Network(nil).List(nil, nil) or
+// client.Network(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *CitybikesSDK) Network(data map[string]any) CitybikesEntity {
 	return NewNetworkEntityFunc(sdk, data)
 }

@@ -9,9 +9,12 @@ The TypeScript SDK for the Citybikes API — a type-safe, entity-oriented client
 
 
 ## Install
-```bash
-npm install @voxgig-sdk/citybikes
-```
+This package is not yet published to npm. Install it from the GitHub
+release tag (`ts/vX.Y.Z`):
+
+- Releases: [https://github.com/voxgig-sdk/citybikes-sdk/releases](https://github.com/voxgig-sdk/citybikes-sdk/releases)
+
+
 ## Tutorial: your first API call
 
 This tutorial walks through creating a client, listing entities, and
@@ -20,17 +23,15 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { CitybikesSDK } from 'citybikes'
+import { CitybikesSDK } from '@voxgig-sdk/citybikes'
 
-const client = new CitybikesSDK({
-  apikey: process.env.CITYBIKES_APIKEY,
-})
+const client = new CitybikesSDK()
 ```
 
 ### 2. List networks
 
 ```ts
-const result = await client.Network().list()
+const result = await client.network.list()
 
 if (result.ok) {
   for (const item of result.data) {
@@ -42,7 +43,7 @@ if (result.ok) {
 ### 3. Load a network
 
 ```ts
-const result = await client.Network().load({ id: 'example_id' })
+const result = await client.network.load({ id: 'example_id' })
 
 if (result.ok) {
   console.log(result.data)
@@ -91,7 +92,7 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = CitybikesSDK.test()
 
-const result = await client.Planet().load({ id: 'test01' })
+const result = await client.network.load({ id: 'test01' })
 // result.ok === true
 // result.data contains mock response data
 ```
@@ -99,7 +100,7 @@ const result = await client.Planet().load({ id: 'test01' })
 You can also use the instance method:
 
 ```ts
-const client = new CitybikesSDK({ apikey: '...' })
+const client = new CitybikesSDK()
 const testClient = client.tester()
 ```
 
@@ -108,7 +109,7 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.Planet()
+const entity = client.network
 
 // First call sets internal match
 await entity.load({ id: 'example' })
@@ -135,7 +136,6 @@ const logger = {
 }
 
 const client = new CitybikesSDK({
-  apikey: '...',
   extend: [logger],
 })
 ```
@@ -146,7 +146,6 @@ Create a `.env.local` file at the project root:
 
 ```
 CITYBIKES_TEST_LIVE=TRUE
-CITYBIKES_APIKEY=<your-key>
 ```
 
 Then run:
@@ -164,7 +163,6 @@ cd ts && npm test
 
 ```ts
 new CitybikesSDK(options?: {
-  apikey?: string
   base?: string
   prefix?: string
   suffix?: string
@@ -175,7 +173,6 @@ new CitybikesSDK(options?: {
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `string` | API key for authentication. |
 | `base` | `string` | Base URL of the API server. |
 | `prefix` | `string` | URL path prefix prepended to all requests. |
 | `suffix` | `string` | URL path suffix appended to all requests. |
@@ -283,7 +280,7 @@ API path: `/networks`
 
 ### Network
 
-Create an instance: `const network = client.Network()`
+Create an instance: `const network = client.network`
 
 #### Operations
 
@@ -306,13 +303,13 @@ Create an instance: `const network = client.Network()`
 #### Example: Load
 
 ```ts
-const network = await client.Network().load({ id: 'network_id' })
+const network = await client.network.load({ id: 'network_id' })
 ```
 
 #### Example: List
 
 ```ts
-const networks = await client.Network().list()
+const networks = await client.network.list()
 ```
 
 
@@ -373,7 +370,7 @@ citybikes/
 Import the SDK from the package root:
 
 ```ts
-import { CitybikesSDK } from 'citybikes'
+import { CitybikesSDK } from '@voxgig-sdk/citybikes'
 ```
 
 ### Entity state
@@ -383,11 +380,11 @@ stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const moon = client.Moon()
-await moon.load({ planet_id: 'earth', id: 'luna' })
+const network = client.network
+await network.load({ id: "example_id" })
 
-// moon.data() now returns the loaded moon data
-// moon.match() returns { planet_id: 'earth', id: 'luna' }
+// network.data() now returns the loaded network data
+// network.match() returns { id: "example_id" }
 ```
 
 Call `make()` to create a fresh instance with the same configuration

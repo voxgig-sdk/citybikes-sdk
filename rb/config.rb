@@ -15,9 +15,6 @@ module CitybikesConfig
       },
       "options" => {
         "base" => "http://api.citybik.es/v2",
-        "auth" => {
-          "prefix" => "Bearer",
-        },
         "headers" => {
           "content-type" => "application/json",
         },
@@ -127,6 +124,7 @@ module CitybikesConfig
                         "orig" => "network_id",
                         "reqd" => true,
                         "type" => "`$STRING`",
+                        "index$" => 0,
                       },
                     ],
                     "query" => [
