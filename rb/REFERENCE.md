@@ -86,7 +86,7 @@ same parameters as `direct()`. Raises on error.
 ## NetworkEntity
 
 ```ruby
-network = client.network
+network = client.Network
 ```
 
 ### Fields
@@ -107,7 +107,7 @@ network = client.network
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.network.list(nil)
+results = client.Network.list(nil)
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`
@@ -115,7 +115,7 @@ results = client.network.list(nil)
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.network.load({ "id" => "network_id" })
+result = client.Network.load({ "id" => "network_id" })
 ```
 
 ### Common Methods

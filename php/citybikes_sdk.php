@@ -233,10 +233,10 @@ class CitybikesSDK
 
     private $_network = null;
 
-    // Idiomatic facade: $client->network()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Network() (PHP method
-    // names are case-insensitive).
-    public function network($data = null)
+    // Canonical facade: $client->Network()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->network()
+    // resolves here too.
+    public function Network($data = null)
     {
         require_once __DIR__ . '/entity/network_entity.php';
         if ($data === null) {

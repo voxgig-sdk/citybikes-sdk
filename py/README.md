@@ -31,24 +31,28 @@ from citybikes_sdk import CitybikesSDK
 client = CitybikesSDK()
 ```
 
-### 2. List networks
+### 2. List network records
+
+`list()` returns a `list` of records (each a `dict`) and raises on
+error — iterate it directly.
 
 ```python
 try:
-    result = client.network.list()
-    for item in result:
-        d = item.data_get()
-        print(d["id"], d["name"])
+    networks = client.Network().list({})
+    for network in networks:
+        print(network)
 except Exception as err:
     print(f"list failed: {err}")
 ```
 
 ### 3. Load a network
 
+`load()` returns the bare record (a `dict`) and raises on error.
+
 ```python
 try:
-    result = client.network.load({"id": "example_id"})
-    print(result)
+    network = client.Network().load({"id": "example_id"})
+    print(network)
 except Exception as err:
     print(f"load failed: {err}")
 ```
@@ -96,8 +100,9 @@ Create a mock client for unit testing — no server required:
 ```python
 client = CitybikesSDK.test()
 
-result = client.network.load({"id": "test01"})
-# result contains mock response data
+# Entity ops return the bare record and raise on error.
+network = client.Network().load({"id": "test01"})
+# network contains the mock response record
 ```
 
 ### Use a custom fetch function
@@ -235,7 +240,7 @@ API path: `/networks`
 
 ### Network
 
-Create an instance: `const network = client.network`
+Create an instance: `network = client.Network()`
 
 #### Operations
 
@@ -257,14 +262,14 @@ Create an instance: `const network = client.network`
 
 #### Example: Load
 
-```ts
-const network = await client.network.load({ id: 'network_id' })
+```python
+network = client.Network().load({"id": "network_id"})
 ```
 
 #### Example: List
 
-```ts
-const networks = await client.network.list()
+```python
+networks = client.Network().list({})
 ```
 
 
@@ -338,7 +343,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```python
-network = client.network
+network = client.Network()
 network.load({"id": "example_id"})
 
 # network.data_get() now returns the loaded network data

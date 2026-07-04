@@ -208,13 +208,7 @@ class CitybikesSDK
   end
 
 
-  # Idiomatic facade: client.network.list / client.network.load({ "id" => ... })
-  def network
-    require_relative 'entity/network_entity'
-    @network ||= NetworkEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.network instead.
+  # Canonical facade: client.Network.list / client.Network.load({ "id" => ... })
   def Network(data = nil)
     require_relative 'entity/network_entity'
     NetworkEntity.new(self, data)

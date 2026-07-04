@@ -83,7 +83,7 @@ same parameters as `direct()`.
 ## NetworkEntity
 
 ```lua
-local network = client:network(nil)
+local network = client:Network(nil)
 ```
 
 ### Fields
@@ -104,7 +104,7 @@ local network = client:network(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:network():list()
+local results, err = client:Network():list()
 ```
 
 #### `load(reqmatch, ctrl) -> any, err`
@@ -112,7 +112,7 @@ local results, err = client:network():list()
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:network():load({ id = "network_id" })
+local result, err = client:Network():load({ id = "network_id" })
 ```
 
 ### Common Methods

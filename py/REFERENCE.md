@@ -80,7 +80,7 @@ Prepare a fetch definition without sending. Returns the `fetchdef` and raises on
 ## NetworkEntity
 
 ```python
-network = client.network
+network = client.Network()
 ```
 
 ### Fields
@@ -101,7 +101,9 @@ network = client.network
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.network.list({})
+results = client.Network().list({})
+for network in results:
+    print(network)
 ```
 
 #### `load(reqmatch, ctrl=None) -> dict`
@@ -109,7 +111,7 @@ results = client.network.list({})
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.network.load({"id": "network_id"})
+result = client.Network().load({"id": "network_id"})
 ```
 
 ### Common Methods

@@ -26,9 +26,11 @@ import { CitybikesSDK } from '@voxgig-sdk/citybikes'
 
 const client = new CitybikesSDK()
 
-// List all networks
-const networks = await client.network.list()
-console.log(networks.data)
+// List all networks (returns Network[])
+const networks = await client.Network().list()
+for (const network of networks) {
+  console.log(network)
+}
 ```
 
 See the [TypeScript README](ts/README.md) for the full guide.
@@ -83,12 +85,13 @@ from citybikes_sdk import CitybikesSDK
 
 client = CitybikesSDK()
 
-# List all networks
-networks = client.network.list()
-print(networks)
+# List all networks (returns a list, raises on error)
+networks = client.Network().list({})
+for network in networks:
+    print(network)
 
-# Load a specific network
-network = client.network.load({"id": "example_id"})
+# Load a specific network (returns the record, raises on error)
+network = client.Network().load({"id": "example_id"})
 print(network)
 ```
 
@@ -100,12 +103,12 @@ require_once 'citybikes_sdk.php';
 
 $client = new CitybikesSDK();
 
-// List all networks (throws on error)
-$networks = $client->network()->list();
+// List all networks (returns an array; throws on error)
+$networks = $client->Network()->list();
 print_r($networks);
 
-// Load a specific network
-$network = $client->network()->load(["id" => "example_id"]);
+// Load a specific network (returns the bare record; throws on error)
+$network = $client->Network()->load(["id" => "example_id"]);
 print_r($network);
 ```
 
@@ -128,12 +131,12 @@ require_relative "Citybikes_sdk"
 
 client = CitybikesSDK.new
 
-# List all networks
-networks = client.network.list
+# List all networks (returns an Array; raises on error)
+networks = client.Network.list
 puts networks
 
-# Load a specific network
-network = client.network.load({ "id" => "example_id" })
+# Load a specific network (returns the bare record; raises on error)
+network = client.Network.load({ "id" => "example_id" })
 puts network
 ```
 
@@ -145,11 +148,11 @@ local sdk = require("citybikes_sdk")
 local client = sdk.new()
 
 -- List all networks
-local networks, err = client:network():list()
+local networks, err = client:Network():list()
 print(networks)
 
 -- Load a specific network
-local network, err = client:network():load({ id = "example_id" })
+local network, err = client:Network():load({ id = "example_id" })
 print(network)
 ```
 
@@ -162,22 +165,27 @@ in-memory mock, so unit tests run offline.
 
 ```ts
 const client = CitybikesSDK.test()
-const result = await client.network.load({ id: 'test01' })
-// result.ok === true, result.data contains mock data
+const network = await client.Network().load({ id: 'test01' })
+// network is a bare Network populated with mock data
+console.log(network)
 ```
 
 ### Python
 
 ```python
 client = CitybikesSDK.test()
-result = client.network.load({"id": "test01"})
+network = client.Network().load({"id": "test01"})
+print(network)
 ```
 
 ### PHP
 
 ```php
-$client = CitybikesSDK::test();
-$result = $client->network()->load(["id" => "test01"]);
+// Seed fixture data so offline calls resolve without a live server.
+$client = CitybikesSDK::test([
+    "entity" => ["network" => ["test01" => ["id" => "test01"]]],
+]);
+$network = $client->Network()->load(["id" => "test01"]);
 ```
 
 ### Golang
@@ -192,15 +200,18 @@ result, err := client.Network(nil).Load(
 ### Ruby
 
 ```ruby
-client = CitybikesSDK.test
-result = client.network.load({ "id" => "test01" })
+# Seed fixture data so offline calls resolve without a live server.
+client = CitybikesSDK.test({
+  "entity" => { "network" => { "test01" => { "id" => "test01" } } },
+})
+network = client.Network.load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local result, err = client:network():load({ id = "test01" })
+local result, err = client:Network():load({ id = "test01" })
 ```
 
 ## How it works
@@ -248,6 +259,9 @@ const result = await client.direct({
   method: 'GET',
   params: { id: 'example' },
 })
+if (result instanceof Error) {
+  throw result
+}
 console.log(result.data)
 ```
 

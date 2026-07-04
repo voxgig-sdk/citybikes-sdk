@@ -220,25 +220,15 @@ class CitybikesSDK:
         }
 
 
-    @property
-    def network(self):
-        """Idiomatic facade: client.network.list() / client.network.load({"id": ...})."""
-        from entity.network_entity import NetworkEntity
-        cached = getattr(self, "_network", None)
-        if cached is None:
-            cached = NetworkEntity(self, None)
-            self._network = cached
-        return cached
-
-    def Network(self, data=None):
-        # Deprecated: use client.network instead.
+    def Network(self, data=None) -> "NetworkEntity":
+        """Entity factory: client.Network().list({}) / client.Network().load({"id": ...})."""
         from entity.network_entity import NetworkEntity
         return NetworkEntity(self, data)
 
 
 
     @classmethod
-    def test(cls, testopts=None, sdkopts=None):
+    def test(cls, testopts=None, sdkopts=None) -> "CitybikesSDK":
         if sdkopts is None:
             sdkopts = {}
         sdkopts = vs.clone(sdkopts)
@@ -258,3 +248,9 @@ class CitybikesSDK:
         sdk.mode = "test"
 
         return sdk
+
+
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from entity.network_entity import NetworkEntity

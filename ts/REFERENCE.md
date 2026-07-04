@@ -109,7 +109,7 @@ Alias for `CitybikesSDK.test()`.
 ## NetworkEntity
 
 ```ts
-const network = client.network
+const network = client.Network()
 ```
 
 ### Fields
@@ -130,7 +130,7 @@ const network = client.network
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.network.list()
+const results = await client.Network().list()
 ```
 
 #### `load(match: object, ctrl?: object)`
@@ -138,7 +138,7 @@ const results = await client.network.list()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.network.load({ id: 'network_id' })
+const result = await client.Network().load({ id: 'network_id' })
 ```
 
 ### Common Methods

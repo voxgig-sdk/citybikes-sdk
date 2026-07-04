@@ -28,16 +28,14 @@ require_relative "Citybikes_sdk"
 client = CitybikesSDK.new
 ```
 
-### 2. List networks
+### 2. List network records
 
 ```ruby
 begin
-  result = client.network.list
-  if result.is_a?(Array)
-    result.each do |item|
-      d = item.data_get
-      puts "#{d["id"]} #{d["name"]}"
-    end
+  # list returns an Array of Network records — iterate directly.
+  networks = client.Network.list
+  networks.each do |item|
+    puts "#{item["id"]} #{item["name"]}"
   end
 rescue => err
   warn "list failed: #{err}"
@@ -48,8 +46,9 @@ end
 
 ```ruby
 begin
-  result = client.network.load({ "id" => "example_id" })
-  puts result
+  # load returns the bare Network record (raises on error).
+  network = client.Network.load({ "id" => "example_id" })
+  puts network
 rescue => err
   warn "load failed: #{err}"
 end
@@ -96,13 +95,17 @@ end
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```ruby
-client = CitybikesSDK.test
+client = CitybikesSDK.test({
+  "entity" => { "network" => { "test01" => { "id" => "test01" } } },
+})
 
-result = client.network.load({ "id" => "test01" })
-# result contains mock response data
+# load returns the bare mock record (raises on error).
+network = client.Network.load({ "id" => "test01" })
+puts network
 ```
 
 ### Use a custom fetch function
@@ -239,7 +242,7 @@ API path: `/networks`
 
 ### Network
 
-Create an instance: `const network = client.network`
+Create an instance: `network = client.Network`
 
 #### Operations
 
@@ -261,14 +264,16 @@ Create an instance: `const network = client.network`
 
 #### Example: Load
 
-```ts
-const network = await client.network.load({ id: 'network_id' })
+```ruby
+# load returns the bare Network record (raises on error).
+network = client.Network.load({ "id" => "network_id" })
 ```
 
 #### Example: List
 
-```ts
-const networks = await client.network.list()
+```ruby
+# list returns an Array of Network records (raises on error).
+networks = client.Network.list
 ```
 
 
@@ -343,7 +348,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
-network = client.network
+network = client.Network
 network.load({ "id" => "example_id" })
 
 # network.data_get now returns the loaded network data
