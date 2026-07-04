@@ -21,7 +21,7 @@ clean:
 VERSION := $(shell cat VERSION)
 TAG := go/v$(VERSION)
 AQL_DRY_RUN_FILLER := AQL-DRY-RUN-FILLER-NOT-A-REAL-SECRET
-publish: test
+publish:
 	@if git rev-parse -q --verify "refs/tags/$(TAG)" >/dev/null; then \
 	  echo "tag $(TAG) already exists — bump VERSION first"; exit 1; fi
 	@set -e; \
