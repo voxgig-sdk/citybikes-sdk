@@ -18,5 +18,12 @@ export interface NetworkLoadMatch {
   id: string
 }
 
-export type NetworkListMatch = Partial<Network>
+export interface NetworkListMatch {
+  company?: any
+  href?: string
+  id?: string
+  location?: Record<string, any>
+  name?: string
+  network?: Record<string, any>
+}
 

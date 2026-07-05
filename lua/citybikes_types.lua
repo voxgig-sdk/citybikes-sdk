@@ -18,6 +18,12 @@
 ---@field id string
 
 ---@class NetworkListMatch
+---@field company? any
+---@field href? string
+---@field id? string
+---@field location? table
+---@field name? string
+---@field network? table
 
 local M = {}
 

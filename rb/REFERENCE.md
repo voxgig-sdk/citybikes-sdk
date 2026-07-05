@@ -8,7 +8,7 @@ Complete API reference for the Citybikes Ruby SDK.
 ### Constructor
 
 ```ruby
-require_relative 'citybikes_sdk'
+require_relative 'Citybikes_sdk'
 
 client = CitybikesSDK.new(options)
 ```
@@ -93,21 +93,21 @@ network = client.Network
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `company` | ``$ANY`` | No |  |
-| `href` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `location` | ``$OBJECT`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `network` | ``$OBJECT`` | No |  |
+| `company` | `Object` | No |  |
+| `href` | `String` | No |  |
+| `id` | `String` | No |  |
+| `location` | `Hash` | No |  |
+| `name` | `String` | No |  |
+| `network` | `Hash` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Network.list(nil)
+results = client.Network.list
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`

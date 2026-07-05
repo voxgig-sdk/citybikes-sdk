@@ -46,7 +46,7 @@ NetworkLoadMatch = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Network#list (any subset of Network fields).
+# Request payload for Network#list.
 #
 # @!attribute [rw] company
 #   @return [Object, nil]

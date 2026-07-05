@@ -23,8 +23,7 @@ type NetworkLoadMatch struct {
 	Id string `json:"id"`
 }
 
-// NetworkListMatch mirrors the network fields as an all-optional match
-// filter (Go analog of Partial<Network>).
+// NetworkListMatch is the typed request payload for Network.ListTyped.
 type NetworkListMatch struct {
 	Company *any `json:"company,omitempty"`
 	Href *string `json:"href,omitempty"`

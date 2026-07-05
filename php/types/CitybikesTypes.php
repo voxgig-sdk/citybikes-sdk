@@ -29,7 +29,7 @@ class NetworkLoadMatch
     public string $id;
 }
 
-/** Match filter for Network#list (any subset of Network fields). */
+/** Request payload for Network#list. */
 class NetworkListMatch
 {
     public mixed $company = null;

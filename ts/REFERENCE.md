@@ -116,12 +116,12 @@ const network = client.Network()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `company` | ``$ANY`` | No |  |
-| `href` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `location` | ``$OBJECT`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `network` | ``$OBJECT`` | No |  |
+| `company` | `any` | No |  |
+| `href` | `string` | No |  |
+| `id` | `string` | No |  |
+| `location` | `Record<string, any>` | No |  |
+| `name` | `string` | No |  |
+| `network` | `Record<string, any>` | No |  |
 
 ### Operations
 

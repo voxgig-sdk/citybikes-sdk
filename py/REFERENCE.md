@@ -87,21 +87,21 @@ network = client.Network()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `company` | ``$ANY`` | No |  |
-| `href` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `location` | ``$OBJECT`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `network` | ``$OBJECT`` | No |  |
+| `company` | `Any` | No |  |
+| `href` | `str` | No |  |
+| `id` | `str` | No |  |
+| `location` | `dict` | No |  |
+| `name` | `str` | No |  |
+| `network` | `dict` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Network().list({})
+results = client.Network().list()
 for network in results:
     print(network)
 ```

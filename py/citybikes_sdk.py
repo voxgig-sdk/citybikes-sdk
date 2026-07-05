@@ -221,7 +221,7 @@ class CitybikesSDK:
 
 
     def Network(self, data=None) -> "NetworkEntity":
-        """Entity factory: client.Network().list({}) / client.Network().load({"id": ...})."""
+        """Entity factory: client.Network().list() / client.Network().load({"id": ...})."""
         from entity.network_entity import NetworkEntity
         return NetworkEntity(self, data)
 
