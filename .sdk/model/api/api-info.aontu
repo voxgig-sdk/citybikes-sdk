@@ -19,10 +19,10 @@ main: {
           url: "http://api.citybik.es/v2"
         }
       ]
+      summary: "API for accessing CityBikes data including network information, station details, and field filtering."
       termsOfService: "https://api.citybik.es/v2/"
       title: "CityBikes API"
       version: "2.0.0"
+      website: "http://citybik.es"
     }
   }
-}
-

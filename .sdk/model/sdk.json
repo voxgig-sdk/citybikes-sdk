@@ -6,9 +6,6 @@
     },
     "kit": {
       "config": {
-        "auth": {
-          "prefix": "Bearer"
-        },
         "docs_order": [
           "ts",
           "py",
@@ -320,15 +317,18 @@
           "name": "Terms of Service",
           "url": "https://api.citybik.es/v2/"
         },
+        "meta_source": "https://www.freepublicapis.com",
         "servers": [
           {
             "description": "CityBikes API v2",
             "url": "http://api.citybik.es/v2"
           }
         ],
+        "summary": "API for accessing CityBikes data including network information, station details, and field filtering.",
         "termsOfService": "https://api.citybik.es/v2/",
         "title": "CityBikes API",
-        "version": "2.0.0"
+        "version": "2.0.0",
+        "website": "http://citybik.es"
       },
       "option": {},
       "target": {
@@ -381,6 +381,9 @@
           },
           "name": "go-cli",
           "phase": {
+            "agentguide": {
+              "active": false
+            },
             "entity": {
               "active": false
             },
@@ -431,6 +434,9 @@
           },
           "name": "go-mcp",
           "phase": {
+            "agentguide": {
+              "active": false
+            },
             "entity": {
               "active": false
             },

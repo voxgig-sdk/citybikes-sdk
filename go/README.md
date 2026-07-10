@@ -60,7 +60,7 @@ func main() {
     }
 
     // Load a single network — the value is the loaded record.
-    network, err := client.Network(nil).Load(map[string]any{"id": "example"}, nil)
+    network, err := client.Network(nil).Load(map[string]any{"id": "example_id"}, nil)
     if err != nil {
         panic(err)
     }
