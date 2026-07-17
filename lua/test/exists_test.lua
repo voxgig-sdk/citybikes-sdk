@@ -1,4 +1,4 @@
--- ProjectName SDK exists test
+-- Citybikes SDK exists test
 
 local sdk = require("citybikes_sdk")
 
