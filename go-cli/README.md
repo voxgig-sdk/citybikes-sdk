@@ -12,21 +12,24 @@ at `../go`.
 # 1. Build a native binary (-> dist/<os>-<arch>/citybikes-cli)
 make build
 
-# 2. Provide credentials once, via the environment
+# 2. See usage (words, entities, env vars)
+./citybikes-cli --help
+
+# 3. Provide credentials once, via the environment
 export CITYBIKES_APIKEY=sk_live_xxx
 
-# 3. Each command line is ONE AQL expression, run against the API:
+# 4. Each command line is ONE AQL expression, run against the API:
 ./citybikes-cli list network
 ./citybikes-cli load 1 network            # {id:1} shorthand
 ./citybikes-cli load '{id:1}' network       # explicit match map
 
-# 4. Override the API base URL for a single call
+# 5. Override the API base URL for a single call
 CITYBIKES_BASE=https://api.example.com ./citybikes-cli list network
 
-# 5. No arguments -> interactive REPL
+# 6. No arguments -> interactive REPL
 ./citybikes-cli
 citybikes> list network
-citybikes> :quit
+citybikes> /quit
 ```
 
 > The rest of this guide follows the [Diátaxis](https://diataxis.fr) framework:
@@ -55,7 +58,7 @@ citybikes> :quit
    ```
 
 4. **Go interactive.** Run the binary with no arguments to open the REPL, then
-   type `:help` for the word and entity lists and `:quit` to leave.
+   type `/help` for the word and entity lists and `/quit` to leave.
 
 That is the whole loop: *build → set key → evaluate AQL expressions*.
 
@@ -100,8 +103,8 @@ evaluated as its own AQL expression:
 ```text
 $ ./citybikes-cli
 citybikes> list network
-citybikes> :help
-citybikes> :quit
+citybikes> /help
+citybikes> /quit
 ```
 
 ### Cross-compile release binaries
@@ -113,7 +116,7 @@ make build-all   # linux/darwin/windows x amd64/arm64, under dist/<os>-<arch>/
 
 ### Discover the available entities
 
-`:help` in the REPL prints the full entity list, or see [Entities](#entities)
+`/help` in the REPL prints the full entity list, or see [Entities](#entities)
 below — this SDK exposes 1 entity.
 
 ## Reference
@@ -140,10 +143,16 @@ The CLI registers these AQL words, each bound to the SDK:
 
 Unset variables fall back to the SDK's built-in defaults.
 
+### CLI flags
+
+- `--help` / `-h` — print usage (words, entities, env vars) and exit.
+
 ### REPL commands
 
-- `:quit` / `:q` / `:exit` — exit the REPL
-- `:help` / `:h` / `:?`     — show the word list, entity list and meta commands
+Meta-commands use the `/` prefix (everything else on a line is evaluated as AQL):
+
+- `/quit` / `/q` / `/exit` — exit the REPL
+- `/help` / `/h` / `/?`     — show the word list, entity list and meta commands
 
 ### Exit codes
 
