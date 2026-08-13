@@ -87,7 +87,7 @@ class NetworkEntityTest < Minitest::Test
       "id" => network_ref01_data["id"],
     }
     network_ref01_data_dt0_loaded = network_ref01_ent.load(network_ref01_match_dt0, nil)
-    network_ref01_data_dt0_load_result = Helpers.to_map(network_ref01_data_dt0_loaded)
+    network_ref01_data_dt0_load_result = Helpers.to_map(network_ref01_data_dt0_loaded.respond_to?(:data_get) ? network_ref01_data_dt0_loaded.data_get : network_ref01_data_dt0_loaded)
     assert !network_ref01_data_dt0_load_result.nil?
     assert_equal network_ref01_data_dt0_load_result["id"], network_ref01_data["id"]
 

@@ -49,7 +49,7 @@ try {
 
 ```php
 try {
-    // load() returns the bare Network record (throws on error).
+    // load() returns the ENTITY — call data_get() for the Network record (throws on error).
     $network = $client->Network()->load(["id" => "example_id"]);
     print_r($network);
 } catch (\Throwable $err) {
@@ -140,7 +140,8 @@ $client = CitybikesSDK::test([
     "entity" => ["network" => ["test01" => ["id" => "test01"]]],
 ]);
 
-// Entity ops return the bare mock record (throws on error).
+// Entity ops return the ENTITY (throws on error);
+// call data_get() for the mock record.
 $network = $client->Network()->list();
 print_r($network);
 ```
@@ -240,7 +241,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (an `array` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (an `array` for single-entity
 ops, a `list` for `list`) and throw on error. Wrap calls in
 `try`/`catch` to handle failures.
 
@@ -267,7 +268,7 @@ On error, `ok` is `false` and `$err` contains the error value.
 | `id` |  |
 | `location` |  |
 | `name` |  |
-| `network` |  |
+| `stations` |  |
 
 Operations: List, Load.
 
@@ -298,12 +299,12 @@ Create an instance: `$network = $client->Network();`
 | `id` | `string` |  |
 | `location` | `array` |  |
 | `name` | `string` |  |
-| `network` | `array` |  |
+| `stations` | `array` |  |
 
 #### Example: Load
 
 ```php
-// load() returns the bare Network record (throws on error).
+// load() returns the ENTITY — call data_get() for the Network record (throws on error).
 $network = $client->Network()->load(["id" => "network_id"]);
 ```
 

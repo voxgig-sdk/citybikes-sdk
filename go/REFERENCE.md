@@ -103,7 +103,7 @@ fmt.Println(network.GetName()) // "network"
 | `id` | `string` | No |  |
 | `location` | `map[string]any` | No |  |
 | `name` | `string` | No |  |
-| `network` | `map[string]any` | No |  |
+| `stations` | `[]any` | No |  |
 
 ### Operations
 

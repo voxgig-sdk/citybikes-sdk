@@ -21,7 +21,7 @@ class Config {
 
 
   main = {
-    name: 'ProjectName',
+    name: 'Citybikes',
   }
 
 
@@ -91,9 +91,9 @@ class Config {
         },
         {
           "active": true,
-          "name": "network",
+          "name": "stations",
           "req": false,
-          "type": "`$OBJECT`",
+          "type": "`$ARRAY`",
           "index$": 5
         }
       ],
@@ -118,6 +118,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/networks",
               "parts": [
@@ -130,7 +131,7 @@ class Config {
               },
               "transform": {
                 "req": "`reqdata`",
-                "res": "`body`"
+                "res": "`body.networks`"
               },
               "index$": 0
             }
@@ -168,6 +169,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/networks/{network_id}",
               "parts": [

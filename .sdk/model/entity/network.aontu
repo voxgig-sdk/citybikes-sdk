@@ -31,9 +31,9 @@ main: kit: entity: network: {
       type: "`$STRING`"
     }
     {
-      name: "network"
+      name: "stations"
       req: false
-      type: "`$OBJECT`"
+      type: "`$ARRAY`"
     }
   ]
 
@@ -72,7 +72,7 @@ main: kit: entity: network: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.networks`"
           }
         }
       ]

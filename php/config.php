@@ -67,9 +67,9 @@ class CitybikesConfig
             ],
             [
               'active' => true,
-              'name' => 'network',
+              'name' => 'stations',
               'req' => false,
-              'type' => '`$OBJECT`',
+              'type' => '`$ARRAY`',
               'index$' => 5,
             ],
           ],
@@ -94,6 +94,7 @@ class CitybikesConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/networks',
                   'parts' => [
@@ -106,7 +107,7 @@ class CitybikesConfig
                   ],
                   'transform' => [
                     'req' => '`reqdata`',
-                    'res' => '`body`',
+                    'res' => '`body.networks`',
                   ],
                   'index$' => 0,
                 ],
@@ -144,6 +145,7 @@ class CitybikesConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/networks/{network_id}',
                   'parts' => [

@@ -97,7 +97,7 @@ describe("NetworkEntity", function()
     }
     local network_ref01_data_dt0_loaded, err = network_ref01_ent:load(network_ref01_match_dt0, nil)
     assert.is_nil(err)
-    local network_ref01_data_dt0_load_result = helpers.to_map(network_ref01_data_dt0_loaded)
+    local network_ref01_data_dt0_load_result = helpers.to_map(type(network_ref01_data_dt0_loaded) == 'table' and network_ref01_data_dt0_loaded.data_get and network_ref01_data_dt0_loaded:data_get() or network_ref01_data_dt0_loaded)
     assert.is_not_nil(network_ref01_data_dt0_load_result)
     assert.are.equal(network_ref01_data_dt0_load_result["id"], network_ref01_data["id"])
 

@@ -97,7 +97,7 @@ $network = $client->Network();
 | `id` | `string` | No |  |
 | `location` | `array` | No |  |
 | `name` | `string` | No |  |
-| `network` | `array` | No |  |
+| `stations` | `array` | No |  |
 
 ### Operations
 

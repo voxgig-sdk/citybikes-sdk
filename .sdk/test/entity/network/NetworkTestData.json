@@ -7,7 +7,7 @@
         "id": "NETWORK00",
         "location": {},
         "name": "s40",
-        "network": {}
+        "stations": []
       },
       "NETWORK01": {
         "company": "s78",
@@ -15,7 +15,7 @@
         "id": "NETWORK01",
         "location": {},
         "name": "s7c",
-        "network": {}
+        "stations": []
       },
       "NETWORK02": {
         "company": "sb4",
@@ -23,7 +23,7 @@
         "id": "NETWORK02",
         "location": {},
         "name": "sb8",
-        "network": {}
+        "stations": []
       }
     }
   },
@@ -34,7 +34,7 @@
         "href": "sf1",
         "location": {},
         "name": "sf4",
-        "network": {}
+        "stations": []
       }
     }
   }

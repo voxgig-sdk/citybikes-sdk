@@ -1,4 +1,4 @@
-# ProjectName SDK exists test
+# Citybikes SDK exists test
 
 import pytest
 from citybikes_sdk import CitybikesSDK

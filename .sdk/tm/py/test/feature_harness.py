@@ -14,12 +14,12 @@ from __future__ import annotations
 
 from urllib.parse import quote
 
-from config import make_config
-from features import _make_feature
-from core.control import CitybikesControl
-from core.error import CitybikesError
-from core.result import CitybikesResult
-from core.spec import CitybikesSpec
+from projectname_sdk.config import make_config
+from projectname_sdk.features import _make_feature
+from projectname_sdk.core.control import CitybikesControl
+from projectname_sdk.core.error import CitybikesError
+from projectname_sdk.core.result import CitybikesResult
+from projectname_sdk.core.spec import CitybikesSpec
 
 
 # True when this SDK was generated with the named feature.

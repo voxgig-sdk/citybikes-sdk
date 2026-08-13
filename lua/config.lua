@@ -61,9 +61,9 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "network",
+            ["name"] = "stations",
             ["req"] = false,
-            ["type"] = "`$OBJECT`",
+            ["type"] = "`$ARRAY`",
             ["index$"] = 5,
           },
         },
@@ -88,6 +88,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/networks",
                 ["parts"] = {
@@ -100,7 +101,7 @@ local function make_config()
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
+                  ["res"] = "`body.networks`",
                 },
                 ["index$"] = 0,
               },
@@ -138,6 +139,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/networks/{network_id}",
                 ["parts"] = {

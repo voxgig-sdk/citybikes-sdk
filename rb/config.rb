@@ -62,9 +62,9 @@ module CitybikesConfig
             },
             {
               "active" => true,
-              "name" => "network",
+              "name" => "stations",
               "req" => false,
-              "type" => "`$OBJECT`",
+              "type" => "`$ARRAY`",
               "index$" => 5,
             },
           ],
@@ -89,6 +89,7 @@ module CitybikesConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/networks",
                   "parts" => [
@@ -101,7 +102,7 @@ module CitybikesConfig
                   },
                   "transform" => {
                     "req" => "`reqdata`",
-                    "res" => "`body`",
+                    "res" => "`body.networks`",
                   },
                   "index$" => 0,
                 },
@@ -139,6 +140,7 @@ module CitybikesConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/networks/{network_id}",
                   "parts" => [

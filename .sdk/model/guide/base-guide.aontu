@@ -8,6 +8,7 @@ guide: {
   entity: network: {
     path: "/networks": {
       op: list: method: *GET
+      op: list: transform: res: *("`body.networks`")|top
     }
     path: "/networks/{network_id}": {
       rename: param: "network_id": *"id"

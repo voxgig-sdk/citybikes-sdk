@@ -92,7 +92,7 @@ network = client.Network()
 | `id` | `str` | No |  |
 | `location` | `dict` | No |  |
 | `name` | `str` | No |  |
-| `network` | `dict` | No |  |
+| `stations` | `list` | No |  |
 
 ### Operations
 

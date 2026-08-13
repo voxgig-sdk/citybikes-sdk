@@ -95,7 +95,7 @@ local network = client:Network(nil)
 | `id` | `string` | No |  |
 | `location` | `table` | No |  |
 | `name` | `string` | No |  |
-| `network` | `table` | No |  |
+| `stations` | `table` | No |  |
 
 ### Operations
 

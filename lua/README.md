@@ -246,7 +246,7 @@ Only `direct()` returns a response envelope — a `table` with `ok`,
 | `id` |  |
 | `location` |  |
 | `name` |  |
-| `network` |  |
+| `stations` |  |
 
 Operations: List, Load.
 
@@ -277,7 +277,7 @@ Create an instance: `local network = client:Network(nil)`
 | `id` | `string` |  |
 | `location` | `table` |  |
 | `name` | `string` |  |
-| `network` | `table` |  |
+| `stations` | `table` |  |
 
 #### Example: Load
 

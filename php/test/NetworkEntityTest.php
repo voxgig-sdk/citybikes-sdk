@@ -97,7 +97,7 @@ class NetworkEntityTest extends TestCase
             "id" => $network_ref01_data["id"],
         ];
         $network_ref01_data_dt0_loaded = $network_ref01_ent->load($network_ref01_match_dt0, null);
-        $network_ref01_data_dt0_load_result = Helpers::to_map($network_ref01_data_dt0_loaded);
+        $network_ref01_data_dt0_load_result = Helpers::to_map(is_object($network_ref01_data_dt0_loaded) && method_exists($network_ref01_data_dt0_loaded, 'data_get') ? $network_ref01_data_dt0_loaded->data_get() : $network_ref01_data_dt0_loaded);
         $this->assertNotNull($network_ref01_data_dt0_load_result);
         $this->assertEquals($network_ref01_data_dt0_load_result["id"], $network_ref01_data["id"]);
 

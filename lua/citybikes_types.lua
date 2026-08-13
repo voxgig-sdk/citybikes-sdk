@@ -12,7 +12,7 @@
 ---@field id? string
 ---@field location? table
 ---@field name? string
----@field network? table
+---@field stations? table
 
 ---@class NetworkLoadMatch
 ---@field id string
@@ -23,7 +23,7 @@
 ---@field id? string
 ---@field location? table
 ---@field name? string
----@field network? table
+---@field stations? table
 
 local M = {}
 

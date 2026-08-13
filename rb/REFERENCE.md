@@ -98,7 +98,7 @@ network = client.Network
 | `id` | `String` | No |  |
 | `location` | `Hash` | No |  |
 | `name` | `String` | No |  |
-| `network` | `Hash` | No |  |
+| `stations` | `Array` | No |  |
 
 ### Operations
 

@@ -16,11 +16,11 @@
 import pytest
 
 from citybikes_sdk import CitybikesSDK
-from core.error import CitybikesError
-from core.result import CitybikesResult
-from core.response import CitybikesResponse
-from core.spec import CitybikesSpec
-from feature.base_feature import CitybikesBaseFeature
+from citybikes_sdk.core.error import CitybikesError
+from citybikes_sdk.core.result import CitybikesResult
+from citybikes_sdk.core.response import CitybikesResponse
+from citybikes_sdk.core.spec import CitybikesSpec
+from citybikes_sdk.feature.base_feature import CitybikesBaseFeature
 
 
 def _client():

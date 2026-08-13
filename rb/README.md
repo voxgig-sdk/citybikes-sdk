@@ -48,7 +48,7 @@ end
 
 ```ruby
 begin
-  # load returns the bare Network record (raises on error).
+  # load returns the ENTITY — call data_get for the Network record (raises on error).
   network = client.Network.load({ "id" => "example_id" })
   puts network
 rescue => err
@@ -134,7 +134,8 @@ client = CitybikesSDK.test({
   "entity" => { "network" => { "test01" => { "id" => "test01" } } },
 })
 
-# Entity ops return the bare mock record (raises on error).
+# Entity ops return the ENTITY (raises on error);
+# call data_get for the mock record.
 network = client.Network.list()
 puts network
 ```
@@ -257,7 +258,7 @@ returns a result `Hash` with these keys:
 | `id` |  |
 | `location` |  |
 | `name` |  |
-| `network` |  |
+| `stations` |  |
 
 Operations: List, Load.
 
@@ -288,12 +289,12 @@ Create an instance: `network = client.Network`
 | `id` | `String` |  |
 | `location` | `Hash` |  |
 | `name` | `String` |  |
-| `network` | `Hash` |  |
+| `stations` | `Array` |  |
 
 #### Example: Load
 
 ```ruby
-# load returns the bare Network record (raises on error).
+# load returns the ENTITY — call data_get for the Network record (raises on error).
 network = client.Network.load({ "id" => "network_id" })
 ```
 

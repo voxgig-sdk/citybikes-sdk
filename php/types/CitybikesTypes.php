@@ -20,7 +20,7 @@ class Network
     public ?string $id = null;
     public ?array $location = null;
     public ?string $name = null;
-    public ?array $network = null;
+    public ?array $stations = null;
 }
 
 /** Request payload for Network#load. */
@@ -37,6 +37,6 @@ class NetworkListMatch
     public ?string $id = null;
     public ?array $location = null;
     public ?string $name = null;
-    public ?array $network = null;
+    public ?array $stations = null;
 }
 

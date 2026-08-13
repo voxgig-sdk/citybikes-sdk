@@ -121,7 +121,7 @@ const network = client.Network()
 | `id` | `string` | No |  |
 | `location` | `Record<string, any>` | No |  |
 | `name` | `string` | No |  |
-| `network` | `Record<string, any>` | No |  |
+| `stations` | `any[]` | No |  |
 
 ### Operations
 

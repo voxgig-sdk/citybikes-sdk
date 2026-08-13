@@ -38,9 +38,18 @@ network, and no credentials:
 ### TypeScript
 
 ```ts
-const client = CitybikesSDK.test()
+// The offline mock starts EMPTY — seed it with the records the test needs.
+// Shape: { entity: { <entity-name>: { <id>: <record> } } }
+const client = CitybikesSDK.test({
+  entity: {
+    network: {
+      test01: { id: 'test01' },
+    },
+  },
+})
 const networks = await client.Network().list()
-// networks is an array of bare Network records populated with mock data
+// networks is an array of Network entities, populated with mock data
+// — call networks[0].data() for the record itself
 console.log(networks)
 ```
 
@@ -110,7 +119,7 @@ import { CitybikesSDK } from '@voxgig-sdk/citybikes'
 
 const client = new CitybikesSDK()
 
-// List all networks (returns Network[])
+// List all networks (returns NetworkEntity[] — .data() for the record)
 const networks = await client.Network().list()
 for (const network of networks) {
   console.log(network)
@@ -191,7 +200,7 @@ $client = new CitybikesSDK();
 $networks = $client->Network()->list();
 print_r($networks);
 
-// Load a specific network (returns the bare record; throws on error)
+// Load a specific network (returns the ENTITY; call data_get() for the record; throws on error)
 $network = $client->Network()->load(["id" => "example_id"]);
 print_r($network);
 ```
@@ -222,7 +231,7 @@ client = CitybikesSDK.new
 networks = client.Network.list
 puts networks
 
-# Load a specific network (returns the bare record; raises on error)
+# Load a specific network (returns the ENTITY; call data_get for the record)
 network = client.Network.load({ "id" => "example_id" })
 puts network
 ```
@@ -359,6 +368,9 @@ Pass custom features via the `extend` option at construction time.
 
 This SDK is generated from the upstream OpenAPI specification. It is an
 unofficial client and is not affiliated with the API provider.
+
+The OpenAPI spec(s) this SDK was generated from are kept in the
+[`.sdk/def/`](.sdk/def/) folder.
 
 - Upstream API: [http://api.citybik.es/v2](http://api.citybik.es/v2)
 

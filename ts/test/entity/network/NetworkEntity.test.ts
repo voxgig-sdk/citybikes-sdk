@@ -63,13 +63,13 @@ describe('NetworkEntity', async () => {
     const network_ref01_ent = client.Network()
     const network_ref01_match: any = {}
 
-    const network_ref01_list = await network_ref01_ent.list(network_ref01_match)
+    const network_ref01_list = (await network_ref01_ent.list(network_ref01_match)).map((e: any) => e.data())
 
 
     // LOAD
     const network_ref01_match_dt0: any = {}
     network_ref01_match_dt0.id = network_ref01_data.id
-    const network_ref01_data_dt0 = await network_ref01_ent.load(network_ref01_match_dt0)
+    const network_ref01_data_dt0 = (await network_ref01_ent.load(network_ref01_match_dt0)).data()
     assert(network_ref01_data_dt0.id === network_ref01_data.id)
 
 

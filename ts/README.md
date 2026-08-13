@@ -35,7 +35,9 @@ const client = new CitybikesSDK()
 
 ### 2. List network records
 
-`list()` resolves to an array of Network objects — iterate it directly:
+`list()` resolves to an array of Network ENTITIES — every operation
+resolves to entities, not raw records. Iterate them directly, and call
+`.data()` on one for the record it holds:
 
 ```ts
 const networks = await client.Network().list()
@@ -133,7 +135,8 @@ Create a mock client for unit testing — no server required:
 const client = CitybikesSDK.test()
 
 const network = await client.Network().list()
-// network is a bare entity populated with mock response data
+// network is the entity, populated with mock response data
+// — call network.data() for the record itself
 console.log(network)
 ```
 
@@ -304,7 +307,7 @@ The `prepare()` method returns:
 | `id` |  |
 | `location` |  |
 | `name` |  |
-| `network` |  |
+| `stations` |  |
 
 Operations: list, load.
 
@@ -335,7 +338,7 @@ Create an instance: `const network = client.Network()`
 | `id` | `string` |  |
 | `location` | `Record<string, any>` |  |
 | `name` | `string` |  |
-| `network` | `Record<string, any>` |  |
+| `stations` | `any[]` |  |
 
 #### Example: Load
 

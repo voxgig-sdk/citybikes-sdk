@@ -11,7 +11,7 @@ export interface Network {
   id?: string
   location?: Record<string, any>
   name?: string
-  network?: Record<string, any>
+  stations?: any[]
 }
 
 export interface NetworkLoadMatch {
@@ -24,6 +24,6 @@ export interface NetworkListMatch {
   id?: string
   location?: Record<string, any>
   name?: string
-  network?: Record<string, any>
+  stations?: any[]
 }
 

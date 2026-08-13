@@ -24,6 +24,7 @@ require_relative 'prepare_method'
 require_relative 'prepare_params'
 require_relative 'prepare_path'
 require_relative 'prepare_query'
+require_relative 'graphql'
 require_relative 'result_basic'
 require_relative 'result_body'
 require_relative 'result_headers'
@@ -55,6 +56,8 @@ CitybikesUtility.registrar = ->(u) {
   u.prepare_params = CitybikesUtilities::PrepareParams
   u.prepare_path = CitybikesUtilities::PreparePath
   u.prepare_query = CitybikesUtilities::PrepareQuery
+  u.graphql_body = CitybikesUtilities::GraphqlBody
+  u.graphql_errors = CitybikesUtilities::GraphqlErrors
   u.result_basic = CitybikesUtilities::ResultBasic
   u.result_body = CitybikesUtilities::ResultBody
   u.result_headers = CitybikesUtilities::ResultHeaders

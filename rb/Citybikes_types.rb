@@ -25,15 +25,15 @@
 # @!attribute [rw] name
 #   @return [String, nil]
 #
-# @!attribute [rw] network
-#   @return [Hash, nil]
+# @!attribute [rw] stations
+#   @return [Array, nil]
 Network = Struct.new(
   :company,
   :href,
   :id,
   :location,
   :name,
-  :network,
+  :stations,
   keyword_init: true
 )
 
@@ -63,15 +63,15 @@ NetworkLoadMatch = Struct.new(
 # @!attribute [rw] name
 #   @return [String, nil]
 #
-# @!attribute [rw] network
-#   @return [Hash, nil]
+# @!attribute [rw] stations
+#   @return [Array, nil]
 NetworkListMatch = Struct.new(
   :company,
   :href,
   :id,
   :location,
   :name,
-  :network,
+  :stations,
   keyword_init: true
 )
 
