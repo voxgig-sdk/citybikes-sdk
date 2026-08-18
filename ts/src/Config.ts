@@ -36,7 +36,7 @@ class Config {
 
 
   options = {
-    base: 'http://api.citybik.es/v2',
+    base: "http://api.citybik.es/v2",
 
     headers: {
       "content-type": "application/json"
@@ -55,46 +55,33 @@ class Config {
     "network": {
       "fields": [
         {
-          "active": true,
           "name": "company",
-          "req": false,
           "type": "`$ANY`",
-          "index$": 0
+          "union": {
+            "branches": 2,
+            "count": 1,
+            "depth": 0
+          }
         },
         {
-          "active": true,
           "name": "href",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 1
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "id",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 2
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "location",
-          "req": false,
-          "type": "`$OBJECT`",
-          "index$": 3
+          "type": "`$OBJECT`"
         },
         {
-          "active": true,
           "name": "name",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 4
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "stations",
-          "req": false,
-          "type": "`$ARRAY`",
-          "index$": 5
+          "type": "`$ARRAY`"
         }
       ],
       "name": "network",
@@ -104,16 +91,13 @@ class Config {
           "name": "list",
           "points": [
             {
-              "active": true,
               "args": {
                 "query": [
                   {
-                    "active": true,
                     "example": "id,name,href",
                     "kind": "query",
                     "name": "field",
                     "orig": "field",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ]
@@ -132,39 +116,32 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.networks`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "list"
+          ]
         },
         "load": {
           "input": "data",
           "name": "load",
           "points": [
             {
-              "active": true,
               "args": {
                 "params": [
                   {
-                    "active": true,
                     "example": "divvy",
                     "kind": "param",
                     "name": "id",
                     "orig": "network_id",
                     "reqd": true,
-                    "type": "`$STRING`",
-                    "index$": 0
+                    "type": "`$STRING`"
                   }
                 ],
                 "query": [
                   {
-                    "active": true,
                     "example": "stations",
                     "kind": "query",
                     "name": "field",
                     "orig": "field",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ]
@@ -190,11 +167,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.network`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "load"
+          ]
         }
       },
       "relations": {

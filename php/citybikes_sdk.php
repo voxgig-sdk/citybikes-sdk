@@ -40,7 +40,7 @@ class CitybikesSDK
         $utility = new CitybikesUtility();
         $this->_utility = $utility;
 
-        $config = CitybikesConfig::make_config();
+        $config = CitybikesConfig::shared_config();
 
         $this->_rootctx = ($utility->make_context)([
             "client" => $this,

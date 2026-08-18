@@ -28,7 +28,7 @@ class CitybikesSDK
     utility = CitybikesUtility.new
     @_utility = utility
 
-    config = CitybikesConfig.make_config
+    config = CitybikesConfig.shared_config
 
     @_rootctx = utility.make_context.call({
       "client" => self,

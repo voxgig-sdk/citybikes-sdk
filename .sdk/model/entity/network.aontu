@@ -9,6 +9,11 @@ main: kit: entity: network: {
       name: "company"
       req: false
       type: "`$ANY`"
+      union: {
+        branches: 2
+        count: 1
+        depth: 0
+      }
     }
     {
       name: "href"
