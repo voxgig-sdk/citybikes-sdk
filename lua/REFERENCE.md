@@ -90,12 +90,12 @@ local network = client:Network(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `company` | `any` | No |  |
-| `href` | `string` | No |  |
-| `id` | `string` | No |  |
-| `location` | `table` | No |  |
-| `name` | `string` | No |  |
-| `stations` | `table` | No |  |
+| `company` | `any` | No | Company or companies operating the network |
+| `href` | `string` | No | API endpoint for this network |
+| `id` | `string` | No | Unique identifier for the network |
+| `location` | `table` | No | Geographic location information |
+| `name` | `string` | No | Display name of the network |
+| `stations` | `table` | No | List of all stations in this network |
 
 ### Operations
 

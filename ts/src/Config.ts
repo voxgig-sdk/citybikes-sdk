@@ -19,9 +19,20 @@ class Config {
     return fi
   }
 
+  // False for a feature added at runtime via options.extend (station's
+  // adopt path) - the constructor uses this to skip makeFeature for names
+  // no generated class backs.
+  hasFeature(this: any, fn: string) {
+    return null != FEATURE_CLASS[fn]
+  }
+
 
   main = {
     name: 'Citybikes',
+        slug: "citybikes",
+    version: "0.0.1",
+    target: "ts",
+
   }
 
 
@@ -56,6 +67,7 @@ class Config {
       "fields": [
         {
           "name": "company",
+          "short": "Company or companies operating the network",
           "type": "`$ANY`",
           "union": {
             "branches": 2,
@@ -65,22 +77,27 @@ class Config {
         },
         {
           "name": "href",
+          "short": "API endpoint for this network",
           "type": "`$STRING`"
         },
         {
           "name": "id",
+          "short": "Unique identifier for the network",
           "type": "`$STRING`"
         },
         {
           "name": "location",
+          "short": "Geographic location information",
           "type": "`$OBJECT`"
         },
         {
           "name": "name",
+          "short": "Display name of the network",
           "type": "`$STRING`"
         },
         {
           "name": "stations",
+          "short": "List of all stations in this network",
           "type": "`$ARRAY`"
         }
       ],

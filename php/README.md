@@ -263,12 +263,12 @@ On error, `ok` is `false` and `$err` contains the error value.
 
 | Field | Description |
 | --- | --- |
-| `company` |  |
-| `href` |  |
-| `id` |  |
-| `location` |  |
-| `name` |  |
-| `stations` |  |
+| `company` | Company or companies operating the network |
+| `href` | API endpoint for this network |
+| `id` | Unique identifier for the network |
+| `location` | Geographic location information |
+| `name` | Display name of the network |
+| `stations` | List of all stations in this network |
 
 Operations: List, Load.
 
@@ -294,12 +294,12 @@ Create an instance: `$network = $client->Network();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `company` | `mixed` |  |
-| `href` | `string` |  |
-| `id` | `string` |  |
-| `location` | `array` |  |
-| `name` | `string` |  |
-| `stations` | `array` |  |
+| `company` | `mixed` | Company or companies operating the network |
+| `href` | `string` | API endpoint for this network |
+| `id` | `string` | Unique identifier for the network |
+| `location` | `array` | Geographic location information |
+| `name` | `string` | Display name of the network |
+| `stations` | `array` | List of all stations in this network |
 
 #### Example: Load
 

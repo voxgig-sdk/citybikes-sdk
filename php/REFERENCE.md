@@ -92,12 +92,12 @@ $network = $client->Network();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `company` | `mixed` | No |  |
-| `href` | `string` | No |  |
-| `id` | `string` | No |  |
-| `location` | `array` | No |  |
-| `name` | `string` | No |  |
-| `stations` | `array` | No |  |
+| `company` | `mixed` | No | Company or companies operating the network |
+| `href` | `string` | No | API endpoint for this network |
+| `id` | `string` | No | Unique identifier for the network |
+| `location` | `array` | No | Geographic location information |
+| `name` | `string` | No | Display name of the network |
+| `stations` | `array` | No | List of all stations in this network |
 
 ### Operations
 

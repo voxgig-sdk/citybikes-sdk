@@ -8,6 +8,7 @@ main: kit: entity: network: {
     {
       name: "company"
       req: false
+      short: "Company or companies operating the network"
       type: "`$ANY`"
       union: {
         branches: 2
@@ -18,26 +19,31 @@ main: kit: entity: network: {
     {
       name: "href"
       req: false
+      short: "API endpoint for this network"
       type: "`$STRING`"
     }
     {
       name: "id"
       req: false
+      short: "Unique identifier for the network"
       type: "`$STRING`"
     }
     {
       name: "location"
       req: false
+      short: "Geographic location information"
       type: "`$OBJECT`"
     }
     {
       name: "name"
       req: false
+      short: "Display name of the network"
       type: "`$STRING`"
     }
     {
       name: "stations"
       req: false
+      short: "List of all stations in this network"
       type: "`$ARRAY`"
     }
   ]

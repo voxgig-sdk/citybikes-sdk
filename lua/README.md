@@ -241,12 +241,12 @@ Only `direct()` returns a response envelope — a `table` with `ok`,
 
 | Field | Description |
 | --- | --- |
-| `company` |  |
-| `href` |  |
-| `id` |  |
-| `location` |  |
-| `name` |  |
-| `stations` |  |
+| `company` | Company or companies operating the network |
+| `href` | API endpoint for this network |
+| `id` | Unique identifier for the network |
+| `location` | Geographic location information |
+| `name` | Display name of the network |
+| `stations` | List of all stations in this network |
 
 Operations: List, Load.
 
@@ -272,12 +272,12 @@ Create an instance: `local network = client:Network(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `company` | `any` |  |
-| `href` | `string` |  |
-| `id` | `string` |  |
-| `location` | `table` |  |
-| `name` | `string` |  |
-| `stations` | `table` |  |
+| `company` | `any` | Company or companies operating the network |
+| `href` | `string` | API endpoint for this network |
+| `id` | `string` | Unique identifier for the network |
+| `location` | `table` | Geographic location information |
+| `name` | `string` | Display name of the network |
+| `stations` | `table` | List of all stations in this network |
 
 #### Example: Load
 

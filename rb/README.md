@@ -253,12 +253,12 @@ returns a result `Hash` with these keys:
 
 | Field | Description |
 | --- | --- |
-| `company` |  |
-| `href` |  |
-| `id` |  |
-| `location` |  |
-| `name` |  |
-| `stations` |  |
+| `company` | Company or companies operating the network |
+| `href` | API endpoint for this network |
+| `id` | Unique identifier for the network |
+| `location` | Geographic location information |
+| `name` | Display name of the network |
+| `stations` | List of all stations in this network |
 
 Operations: List, Load.
 
@@ -284,12 +284,12 @@ Create an instance: `network = client.Network`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `company` | `Object` |  |
-| `href` | `String` |  |
-| `id` | `String` |  |
-| `location` | `Hash` |  |
-| `name` | `String` |  |
-| `stations` | `Array` |  |
+| `company` | `Object` | Company or companies operating the network |
+| `href` | `String` | API endpoint for this network |
+| `id` | `String` | Unique identifier for the network |
+| `location` | `Hash` | Geographic location information |
+| `name` | `String` | Display name of the network |
+| `stations` | `Array` | List of all stations in this network |
 
 #### Example: Load
 

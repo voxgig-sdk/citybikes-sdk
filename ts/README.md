@@ -9,7 +9,7 @@ The API is exposed as capitalised, semantic **Entities** — e.g.
 instead of raw URL paths and query parameters. This keeps the surface
 predictable and low-friction for both humans and AI agents.
 
-> Other languages, the CLI, and MCP server live alongside this one — see
+> Also generated from this model: `go`, `go-cli`, `go-mcp`, `lua`, `php`, `py`, `rb` — see
 > the [top-level README](../README.md).
 
 
@@ -302,12 +302,12 @@ The `prepare()` method returns:
 
 | Field | Description |
 | --- | --- |
-| `company` |  |
-| `href` |  |
-| `id` |  |
-| `location` |  |
-| `name` |  |
-| `stations` |  |
+| `company` | Company or companies operating the network |
+| `href` | API endpoint for this network |
+| `id` | Unique identifier for the network |
+| `location` | Geographic location information |
+| `name` | Display name of the network |
+| `stations` | List of all stations in this network |
 
 Operations: list, load.
 
@@ -333,12 +333,12 @@ Create an instance: `const network = client.Network()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `company` | `any` |  |
-| `href` | `string` |  |
-| `id` | `string` |  |
-| `location` | `Record<string, any>` |  |
-| `name` | `string` |  |
-| `stations` | `any[]` |  |
+| `company` | `any` | Company or companies operating the network |
+| `href` | `string` | API endpoint for this network |
+| `id` | `string` | Unique identifier for the network |
+| `location` | `Record<string, any>` | Geographic location information |
+| `name` | `string` | Display name of the network |
+| `stations` | `any[]` | List of all stations in this network |
 
 #### Example: Load
 

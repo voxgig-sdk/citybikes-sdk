@@ -36,6 +36,7 @@
               "active": true,
               "name": "company",
               "req": false,
+              "short": "Company or companies operating the network",
               "type": "`$ANY`",
               "union": {
                 "branches": 2,
@@ -47,30 +48,35 @@
               "active": true,
               "name": "href",
               "req": false,
+              "short": "API endpoint for this network",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "id",
               "req": false,
+              "short": "Unique identifier for the network",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "location",
               "req": false,
+              "short": "Geographic location information",
               "type": "`$OBJECT`"
             },
             {
               "active": true,
               "name": "name",
               "req": false,
+              "short": "Display name of the network",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "stations",
               "req": false,
+              "short": "List of all stations in this network",
               "type": "`$ARRAY`"
             }
           ],

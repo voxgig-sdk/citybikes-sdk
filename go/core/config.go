@@ -11,6 +11,9 @@ func MakeConfig() map[string]any {
 	return map[string]any{
 		"main": map[string]any{
 			"name": "Citybikes",
+			"slug": "citybikes",
+			"version": "0.0.1",
+			"target": "go",
 		},
 		"feature": map[string]any{
 			"test": map[string]any{
@@ -33,6 +36,7 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "company",
+						"short": "Company or companies operating the network",
 						"type": "`$ANY`",
 						"union": map[string]any{
 							"branches": 2,
@@ -42,22 +46,27 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"name": "href",
+						"short": "API endpoint for this network",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "id",
+						"short": "Unique identifier for the network",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "location",
+						"short": "Geographic location information",
 						"type": "`$OBJECT`",
 					},
 					map[string]any{
 						"name": "name",
+						"short": "Display name of the network",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "stations",
+						"short": "List of all stations in this network",
 						"type": "`$ARRAY`",
 					},
 				},

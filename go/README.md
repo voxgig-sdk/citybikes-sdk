@@ -6,7 +6,7 @@ The Golang SDK for the Citybikes API — an entity-oriented client using standar
 
 It exposes the API as capitalised, semantic **Entities** — e.g. `client.Network(nil)` — each with the same small set of operations (`List`, `Load`) instead of raw URL paths and query strings. You call meaning, not endpoints, which keeps the cognitive load low.
 
-> Other languages, the CLI, and MCP server live alongside this one — see
+> Also generated from this model: `go-cli`, `go-mcp`, `lua`, `php`, `py`, `rb`, `ts` — see
 > the [top-level README](../README.md).
 
 
@@ -269,12 +269,12 @@ Only `Direct()` returns a response envelope — a `map[string]any` with
 
 | Field | Description |
 | --- | --- |
-| `"company"` |  |
-| `"href"` |  |
-| `"id"` |  |
-| `"location"` |  |
-| `"name"` |  |
-| `"stations"` |  |
+| `"company"` | Company or companies operating the network |
+| `"href"` | API endpoint for this network |
+| `"id"` | Unique identifier for the network |
+| `"location"` | Geographic location information |
+| `"name"` | Display name of the network |
+| `"stations"` | List of all stations in this network |
 
 Operations: List, Load.
 
@@ -300,12 +300,12 @@ Create an instance: `network := client.Network(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `company` | `any` |  |
-| `href` | `string` |  |
-| `id` | `string` |  |
-| `location` | `map[string]any` |  |
-| `name` | `string` |  |
-| `stations` | `[]any` |  |
+| `company` | `any` | Company or companies operating the network |
+| `href` | `string` | API endpoint for this network |
+| `id` | `string` | Unique identifier for the network |
+| `location` | `map[string]any` | Geographic location information |
+| `name` | `string` | Display name of the network |
+| `stations` | `[]any` | List of all stations in this network |
 
 #### Example: Load
 

@@ -87,12 +87,12 @@ network = client.Network()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `company` | `Any` | No |  |
-| `href` | `str` | No |  |
-| `id` | `str` | No |  |
-| `location` | `dict` | No |  |
-| `name` | `str` | No |  |
-| `stations` | `list` | No |  |
+| `company` | `Any` | No | Company or companies operating the network |
+| `href` | `str` | No | API endpoint for this network |
+| `id` | `str` | No | Unique identifier for the network |
+| `location` | `dict` | No | Geographic location information |
+| `name` | `str` | No | Display name of the network |
+| `stations` | `list` | No | List of all stations in this network |
 
 ### Operations
 

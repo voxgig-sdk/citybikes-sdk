@@ -256,12 +256,12 @@ On error, `ok` is `False` and `err` contains the error value.
 
 | Field | Description |
 | --- | --- |
-| `company` |  |
-| `href` |  |
-| `id` |  |
-| `location` |  |
-| `name` |  |
-| `stations` |  |
+| `company` | Company or companies operating the network |
+| `href` | API endpoint for this network |
+| `id` | Unique identifier for the network |
+| `location` | Geographic location information |
+| `name` | Display name of the network |
+| `stations` | List of all stations in this network |
 
 Operations: List, Load.
 
@@ -287,12 +287,12 @@ Create an instance: `network = client.Network()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `company` | `Any` |  |
-| `href` | `str` |  |
-| `id` | `str` |  |
-| `location` | `dict` |  |
-| `name` | `str` |  |
-| `stations` | `list` |  |
+| `company` | `Any` | Company or companies operating the network |
+| `href` | `str` | API endpoint for this network |
+| `id` | `str` | Unique identifier for the network |
+| `location` | `dict` | Geographic location information |
+| `name` | `str` | Display name of the network |
+| `stations` | `list` | List of all stations in this network |
 
 #### Example: Load
 

@@ -93,12 +93,12 @@ network = client.Network
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `company` | `Object` | No |  |
-| `href` | `String` | No |  |
-| `id` | `String` | No |  |
-| `location` | `Hash` | No |  |
-| `name` | `String` | No |  |
-| `stations` | `Array` | No |  |
+| `company` | `Object` | No | Company or companies operating the network |
+| `href` | `String` | No | API endpoint for this network |
+| `id` | `String` | No | Unique identifier for the network |
+| `location` | `Hash` | No | Geographic location information |
+| `name` | `String` | No | Display name of the network |
+| `stations` | `Array` | No | List of all stations in this network |
 
 ### Operations
 
