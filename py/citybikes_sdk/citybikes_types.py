@@ -25,14 +25,13 @@ class Network(TypedDict, total=False):
     stations: list
 
 
-class NetworkLoadMatch(TypedDict):
+class NetworkLoadMatchRequired(TypedDict):
     id: str
+
+
+class NetworkLoadMatch(NetworkLoadMatchRequired, total=False):
+    field: str
 
 
 class NetworkListMatch(TypedDict, total=False):
-    company: Any
-    href: str
-    id: str
-    location: dict
-    name: str
-    stations: list
+    field: str

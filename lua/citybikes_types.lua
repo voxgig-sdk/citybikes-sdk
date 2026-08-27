@@ -16,14 +16,10 @@
 
 ---@class NetworkLoadMatch
 ---@field id string
+---@field field? string
 
 ---@class NetworkListMatch
----@field company? any
----@field href? string
----@field id? string
----@field location? table
----@field name? string
----@field stations? table
+---@field field? string
 
 local M = {}
 

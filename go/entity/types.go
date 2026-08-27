@@ -25,16 +25,12 @@ type Network struct {
 // NetworkLoadMatch is the typed request payload for Network.LoadTyped.
 type NetworkLoadMatch struct {
 	Id string `json:"id"`
+	Field *string `json:"field,omitempty"`
 }
 
 // NetworkListMatch is the typed request payload for Network.ListTyped.
 type NetworkListMatch struct {
-	Company *any `json:"company,omitempty"`
-	Href *string `json:"href,omitempty"`
-	Id *string `json:"id,omitempty"`
-	Location *map[string]any `json:"location,omitempty"`
-	Name *string `json:"name,omitempty"`
-	Stations *[]any `json:"stations,omitempty"`
+	Field *string `json:"field,omitempty"`
 }
 
 // asMap turns a typed request/data struct into the map[string]any the

@@ -16,14 +16,10 @@ export interface Network {
 
 export interface NetworkLoadMatch {
   id: string
+  field?: string
 }
 
 export interface NetworkListMatch {
-  company?: any
-  href?: string
-  id?: string
-  location?: Record<string, any>
-  name?: string
-  stations?: any[]
+  field?: string
 }
 

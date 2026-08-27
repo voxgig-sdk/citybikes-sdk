@@ -41,37 +41,21 @@ Network = Struct.new(
 #
 # @!attribute [rw] id
 #   @return [String]
+#
+# @!attribute [rw] field
+#   @return [String, nil]
 NetworkLoadMatch = Struct.new(
   :id,
+  :field,
   keyword_init: true
 )
 
 # Request payload for Network#list.
 #
-# @!attribute [rw] company
-#   @return [Object, nil]
-#
-# @!attribute [rw] href
+# @!attribute [rw] field
 #   @return [String, nil]
-#
-# @!attribute [rw] id
-#   @return [String, nil]
-#
-# @!attribute [rw] location
-#   @return [Hash, nil]
-#
-# @!attribute [rw] name
-#   @return [String, nil]
-#
-# @!attribute [rw] stations
-#   @return [Array, nil]
 NetworkListMatch = Struct.new(
-  :company,
-  :href,
-  :id,
-  :location,
-  :name,
-  :stations,
+  :field,
   keyword_init: true
 )
 

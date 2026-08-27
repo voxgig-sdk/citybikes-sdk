@@ -27,16 +27,12 @@ class Network
 class NetworkLoadMatch
 {
     public string $id;
+    public ?string $field = null;
 }
 
 /** Request payload for Network#list. */
 class NetworkListMatch
 {
-    public mixed $company = null;
-    public ?string $href = null;
-    public ?string $id = null;
-    public ?array $location = null;
-    public ?string $name = null;
-    public ?array $stations = null;
+    public ?string $field = null;
 }
 
