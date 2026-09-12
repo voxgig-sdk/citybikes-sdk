@@ -79,6 +79,10 @@ module CitybikesConfig
               "type" => "`$ARRAY`",
             },
           ],
+          "id" => {
+            "field" => "id",
+            "name" => "id",
+          },
           "name" => "network",
           "op" => {
             "list" => {
@@ -100,8 +104,10 @@ module CitybikesConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/networks",
-                  "parts" => [
-                    "networks",
+                  "segments" => [
+                    {
+                      "lit" => "networks",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -112,6 +118,9 @@ module CitybikesConfig
                     "req" => "`reqdata`",
                     "res" => "`body.networks`",
                   },
+                  "parts" => [
+                    "networks",
+                  ],
                 },
               ],
             },
@@ -144,15 +153,19 @@ module CitybikesConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/networks/{network_id}",
-                  "parts" => [
-                    "networks",
-                    "{id}",
-                  ],
                   "rename" => {
                     "param" => {
                       "network_id" => "id",
                     },
                   },
+                  "segments" => [
+                    {
+                      "lit" => "networks",
+                    },
+                    {
+                      "var" => "id",
+                    },
+                  ],
                   "select" => {
                     "exist" => [
                       "field",
@@ -163,6 +176,10 @@ module CitybikesConfig
                     "req" => "`reqdata`",
                     "res" => "`body.network`",
                   },
+                  "parts" => [
+                    "networks",
+                    "{id}",
+                  ],
                 },
               ],
             },

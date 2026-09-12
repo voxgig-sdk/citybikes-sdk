@@ -1,6 +1,14 @@
 # Citybikes SDK configuration
 
 
+# The sekreto plugin DEFINITIONS the model selected per feature, imported
+# above by name from the modules the catalogue's active `plugin.def`
+# entries declare. Handed to each feature (secrets builds its Sekreto
+# with them): a provider kind not listed here is unknown to that SDK.
+FEATURE_PLUGINS = {
+}
+
+
 _shared_config = None
 
 
@@ -88,6 +96,10 @@ def make_config():
             "type": "`$ARRAY`",
           },
         ],
+        "id": {
+          "field": "id",
+          "name": "id",
+        },
         "name": "network",
         "op": {
           "list": {
@@ -109,8 +121,10 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/networks",
-                "parts": [
-                  "networks",
+                "segments": [
+                  {
+                    "lit": "networks",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -121,6 +135,9 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body.networks`",
                 },
+                "parts": [
+                  "networks",
+                ],
               },
             ],
           },
@@ -153,15 +170,19 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/networks/{network_id}",
-                "parts": [
-                  "networks",
-                  "{id}",
-                ],
                 "rename": {
                   "param": {
                     "network_id": "id",
                   },
                 },
+                "segments": [
+                  {
+                    "lit": "networks",
+                  },
+                  {
+                    "var": "id",
+                  },
+                ],
                 "select": {
                   "exist": [
                     "field",
@@ -172,6 +193,10 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body.network`",
                 },
+                "parts": [
+                  "networks",
+                  "{id}",
+                ],
               },
             ],
           },

@@ -73,8 +73,10 @@ main: kit: entity: network: {
           }
           method: "GET"
           orig: "/networks"
-          parts: [
-            "networks"
+          segments: [
+            {
+              lit: "networks"
+            }
           ]
           select: {
             exist: [
@@ -116,15 +118,19 @@ main: kit: entity: network: {
           }
           method: "GET"
           orig: "/networks/{network_id}"
-          parts: [
-            "networks"
-            "{id}"
-          ]
           rename: {
             param: {
               network_id: "id"
             }
           }
+          segments: [
+            {
+              lit: "networks"
+            }
+            {
+              var: "id"
+            }
+          ]
           select: {
             exist: [
               "field"

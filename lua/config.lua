@@ -67,6 +67,10 @@ local function make_config()
             ["type"] = "`$ARRAY`",
           },
         },
+        ["id"] = {
+          ["field"] = "id",
+          ["name"] = "id",
+        },
         ["name"] = "network",
         ["op"] = {
           ["list"] = {
@@ -88,8 +92,10 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/networks",
-                ["parts"] = {
-                  "networks",
+                ["segments"] = {
+                  {
+                    ["lit"] = "networks",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -99,6 +105,9 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.networks`",
+                },
+                ["parts"] = {
+                  "networks",
                 },
               },
             },
@@ -132,13 +141,17 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/networks/{network_id}",
-                ["parts"] = {
-                  "networks",
-                  "{id}",
-                },
                 ["rename"] = {
                   ["param"] = {
                     ["network_id"] = "id",
+                  },
+                },
+                ["segments"] = {
+                  {
+                    ["lit"] = "networks",
+                  },
+                  {
+                    ["var"] = "id",
                   },
                 },
                 ["select"] = {
@@ -150,6 +163,10 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.network`",
+                },
+                ["parts"] = {
+                  "networks",
+                  "{id}",
                 },
               },
             },

@@ -93,6 +93,10 @@ class CitybikesConfig
               'type' => '`$ARRAY`',
             ],
           ],
+          'id' => [
+            'field' => 'id',
+            'name' => 'id',
+          ],
           'name' => 'network',
           'op' => [
             'list' => [
@@ -114,8 +118,10 @@ class CitybikesConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/networks',
-                  'parts' => [
-                    'networks',
+                  'segments' => [
+                    [
+                      'lit' => 'networks',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -125,6 +131,9 @@ class CitybikesConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body.networks`',
+                  ],
+                  'parts' => [
+                    'networks',
                   ],
                 ],
               ],
@@ -158,13 +167,17 @@ class CitybikesConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/networks/{network_id}',
-                  'parts' => [
-                    'networks',
-                    '{id}',
-                  ],
                   'rename' => [
                     'param' => [
                       'network_id' => 'id',
+                    ],
+                  ],
+                  'segments' => [
+                    [
+                      'lit' => 'networks',
+                    ],
+                    [
+                      'var' => 'id',
                     ],
                   ],
                   'select' => [
@@ -176,6 +189,10 @@ class CitybikesConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body.network`',
+                  ],
+                  'parts' => [
+                    'networks',
+                    '{id}',
                   ],
                 ],
               ],
