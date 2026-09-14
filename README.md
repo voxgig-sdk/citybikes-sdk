@@ -105,7 +105,7 @@ local results, err = client:Network():list()
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/citybikes` | publish pending — [install from git tag](https://github.com/voxgig-sdk/citybikes-sdk/releases) |
+| TypeScript | `@voxgig-sdk/citybikes-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/citybikes-sdk/releases) |
 | Python | `voxgig-sdk-citybikes` | publish pending — [install from git tag](https://github.com/voxgig-sdk/citybikes-sdk/releases) |
 | PHP | `voxgig-sdk/citybikes` | publish pending — [install from git tag](https://github.com/voxgig-sdk/citybikes-sdk/releases) |
 | Golang | `github.com/voxgig-sdk/citybikes-sdk/go` | `go get github.com/voxgig-sdk/citybikes-sdk/go@latest` |
@@ -119,7 +119,7 @@ local results, err = client:Network():list()
 ### TypeScript
 
 ```ts
-import { CitybikesSDK } from '@voxgig-sdk/citybikes'
+import { CitybikesSDK } from '@voxgig-sdk/citybikes-sdk'
 
 const client = new CitybikesSDK()
 
