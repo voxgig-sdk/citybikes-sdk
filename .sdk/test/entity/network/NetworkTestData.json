@@ -37,5 +37,357 @@
         "stations": []
       }
     }
+  },
+  "requests": {
+    "GET /networks": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getNetworks",
+        "parameters": [
+          {
+            "description": "Comma-separated list of fields to include in the response (e.g., id,name,href)",
+            "example": "id,name,href",
+            "in": "query",
+            "name": "fields",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "filtered": {
+                    "summary": "Filtered fields (id, name, href)",
+                    "value": {
+                      "networks": [
+                        {
+                          "href": "/v2/networks/velib",
+                          "id": "velib",
+                          "name": "Vélib'"
+                        }
+                      ]
+                    }
+                  },
+                  "full": {
+                    "summary": "Full network information",
+                    "value": {
+                      "networks": [
+                        {
+                          "company": "JCDecaux",
+                          "href": "/v2/networks/velib",
+                          "id": "velib",
+                          "location": {
+                            "city": "Paris",
+                            "country": "FRA",
+                            "latitude": 48.856612,
+                            "longitude": 2.352233
+                          },
+                          "name": "Vélib'"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "schema": {
+                  "properties": {
+                    "networks": {
+                      "items": {
+                        "description": "Basic network information",
+                        "properties": {
+                          "company": {
+                            "description": "Company or companies operating the network",
+                            "example": "JCDecaux",
+                            "oneOf": [
+                              {
+                                "type": "string"
+                              },
+                              {
+                                "items": {
+                                  "type": "string"
+                                },
+                                "type": "array"
+                              }
+                            ]
+                          },
+                          "href": {
+                            "description": "API endpoint for detailed network information",
+                            "example": "/v2/networks/velib",
+                            "type": "string"
+                          },
+                          "id": {
+                            "description": "Unique identifier for the network",
+                            "example": "velib",
+                            "type": "string"
+                          },
+                          "location": {
+                            "description": "Geographic location information",
+                            "properties": {
+                              "city": {
+                                "description": "City name",
+                                "example": "Paris",
+                                "type": "string"
+                              },
+                              "country": {
+                                "description": "Country code (ISO 3166-1 alpha-3 or alpha-2)",
+                                "example": "FRA",
+                                "type": "string"
+                              },
+                              "latitude": {
+                                "description": "Latitude coordinate",
+                                "example": 48.856612,
+                                "format": "double",
+                                "type": "number"
+                              },
+                              "longitude": {
+                                "description": "Longitude coordinate",
+                                "example": 2.352233,
+                                "format": "double",
+                                "type": "number"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "name": {
+                            "description": "Display name of the network",
+                            "example": "Vélib'",
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response with list of networks"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    },
+    "GET /networks/{network_id}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getNetworkById",
+        "parameters": [
+          {
+            "description": "Unique identifier of the network",
+            "example": "divvy",
+            "in": "path",
+            "name": "network_id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Comma-separated list of fields to include in the response. Use 'stations' to get only station data.",
+            "example": "stations",
+            "in": "query",
+            "name": "fields",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "full": {
+                    "summary": "Full network details with stations",
+                    "value": {
+                      "network": {
+                        "company": [
+                          "Motivate International, Inc.",
+                          "PBSC Urban Solutions"
+                        ],
+                        "href": "/v2/networks/divvy",
+                        "id": "divvy",
+                        "location": {
+                          "city": "Chicago, IL",
+                          "country": "US",
+                          "latitude": 41.8781136,
+                          "longitude": -87.6297982
+                        },
+                        "name": "Divvy",
+                        "stations": [
+                          {
+                            "empty_slots": 1,
+                            "extra": {
+                              "online": true,
+                              "uid": "95a7c0eccf0eff27a6e9c603d93e0bdc"
+                            },
+                            "free_bikes": 13,
+                            "id": "000db9b6e3849926d4868caf7096780d",
+                            "kind": "ebike",
+                            "latitude": 41.85418424947,
+                            "longitude": -87.6191537415,
+                            "name": "Calumet Ave & 21st St",
+                            "timestamp": "2025-04-17T16:41:02.505032+00:00"
+                          }
+                        ]
+                      }
+                    }
+                  }
+                },
+                "schema": {
+                  "properties": {
+                    "network": {
+                      "description": "Detailed network information including stations",
+                      "properties": {
+                        "company": {
+                          "description": "Company or companies operating the network",
+                          "oneOf": [
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "items": {
+                                "type": "string"
+                              },
+                              "type": "array"
+                            }
+                          ]
+                        },
+                        "href": {
+                          "description": "API endpoint for this network",
+                          "example": "/v2/networks/divvy",
+                          "type": "string"
+                        },
+                        "id": {
+                          "description": "Unique identifier for the network",
+                          "example": "divvy",
+                          "type": "string"
+                        },
+                        "location": {
+                          "description": "Geographic location information",
+                          "properties": {
+                            "city": {
+                              "description": "City name",
+                              "example": "Paris",
+                              "type": "string"
+                            },
+                            "country": {
+                              "description": "Country code (ISO 3166-1 alpha-3 or alpha-2)",
+                              "example": "FRA",
+                              "type": "string"
+                            },
+                            "latitude": {
+                              "description": "Latitude coordinate",
+                              "example": 48.856612,
+                              "format": "double",
+                              "type": "number"
+                            },
+                            "longitude": {
+                              "description": "Longitude coordinate",
+                              "example": 2.352233,
+                              "format": "double",
+                              "type": "number"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "name": {
+                          "description": "Display name of the network",
+                          "example": "Divvy",
+                          "type": "string"
+                        },
+                        "stations": {
+                          "description": "List of all stations in this network",
+                          "items": {
+                            "description": "Individual bike station information",
+                            "properties": {
+                              "empty_slots": {
+                                "description": "Number of empty docking slots",
+                                "example": 1,
+                                "type": "integer"
+                              },
+                              "extra": {
+                                "additionalProperties": true,
+                                "description": "Additional station-specific information",
+                                "properties": {
+                                  "online": {
+                                    "description": "Whether the station is online",
+                                    "type": "boolean"
+                                  },
+                                  "uid": {
+                                    "description": "Alternative unique identifier",
+                                    "type": "string"
+                                  }
+                                },
+                                "type": "object"
+                              },
+                              "free_bikes": {
+                                "description": "Number of available bikes",
+                                "example": 13,
+                                "type": "integer"
+                              },
+                              "id": {
+                                "description": "Unique identifier for the station",
+                                "example": "000db9b6e3849926d4868caf7096780d",
+                                "type": "string"
+                              },
+                              "kind": {
+                                "description": "Type of bikes available",
+                                "example": "ebike",
+                                "type": "string"
+                              },
+                              "latitude": {
+                                "description": "Station latitude coordinate",
+                                "example": 41.85418424947,
+                                "format": "double",
+                                "type": "number"
+                              },
+                              "longitude": {
+                                "description": "Station longitude coordinate",
+                                "example": -87.6191537415,
+                                "format": "double",
+                                "type": "number"
+                              },
+                              "name": {
+                                "description": "Station name or address",
+                                "example": "Calumet Ave & 21st St",
+                                "type": "string"
+                              },
+                              "timestamp": {
+                                "description": "UTC timestamp of last update",
+                                "example": "2025-04-17T16:41:02.505032+00:00",
+                                "format": "date-time",
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "type": "array"
+                        }
+                      },
+                      "type": "object"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response with network details"
+          },
+          "404": {
+            "description": "Network not found"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    }
   }
 }

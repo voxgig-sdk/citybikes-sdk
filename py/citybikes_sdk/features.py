@@ -1,12 +1,18 @@
 # Citybikes SDK feature factory
 
 from citybikes_sdk.feature.base_feature import CitybikesBaseFeature
+from citybikes_sdk.feature.ratelimit_feature import CitybikesRatelimitFeature
+from citybikes_sdk.feature.retry_feature import CitybikesRetryFeature
 from citybikes_sdk.feature.test_feature import CitybikesTestFeature
+from citybikes_sdk.feature.timeout_feature import CitybikesTimeoutFeature
 
 
 _FEATURES = {
     "base": lambda: CitybikesBaseFeature(),
+    "ratelimit": lambda: CitybikesRatelimitFeature(),
+    "retry": lambda: CitybikesRetryFeature(),
     "test": lambda: CitybikesTestFeature(),
+    "timeout": lambda: CitybikesTimeoutFeature(),
 }
 
 
